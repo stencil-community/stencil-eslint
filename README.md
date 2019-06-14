@@ -1,4 +1,4 @@
-# eslint-plugin-stencil
+# @stencil/eslint-plugin
 
 ESLint rules specific to Stencil JS projects.
 
@@ -70,4 +70,4 @@ All contributions welcome.
 
 ## Licence 
 
-- [MIT](https://github.com/addtoevent/stencil-eslint/blob/master/LICENSE.md)
+- [MIT](https://raw.githubusercontent.com/ionic-team/stencil/master/LICENSE)
