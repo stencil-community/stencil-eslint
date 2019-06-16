@@ -1,36 +1,41 @@
 {
-    "name": "@stencil/eslint-plugin",
-    "version": "0.0.1",
-    "description": "ESLint rules specific to Stencil JS projects.",
-    "keywords": [
-        "eslint",
-        "eslintplugin",
-        "eslint-plugin",
-        "stencil",
-        "stencileslint",
-        "stencil eslint"
-    ],
-    "contributors": [
-        "Tom Chinery <tom.chinery@addtoevent.co.uk>",
-        "Jack Woodward <jack@addtoevent.co.uk>"
-    ],
-    "main": "lib/index.js",
-    "scripts": {
-        "test": "mocha tests --recursive"
-    },
-    "dependencies": {
-        "requireindex": "~1.1.0"
-    },
-    "devDependencies": {
-        "eslint": "~3.9.1",
-        "mocha": "^3.1.2"
-    },
-    "engines": {
-        "node": ">=0.10.0"
-    },
-    "repository": {
-        "type" : "git",
-        "url" : "https://github.com/ionic-team/stencil-eslint.git"
-    },
-    "license": "MIT"
+  "name": "@stencil/eslint-plugin",
+  "version": "0.0.1",
+  "description": "ESLint rules specific to Stencil JS projects.",
+  "keywords": [
+    "eslint",
+    "eslintplugin",
+    "eslint-plugin",
+    "stencil",
+    "stencileslint",
+    "stencil eslint"
+  ],
+  "contributors": [
+    "Tom Chinery <tom.chinery@addtoevent.co.uk>",
+    "Jack Woodward <jack@addtoevent.co.uk>"
+  ],
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc -p .",
+    "test": "mocha tests --recursive"
+  },
+  "dependencies": {
+    "requireindex": "~1.1.0"
+  },
+  "devDependencies": {
+    "@types/eslint": "^4.16.6",
+    "@types/estree": "0.0.39",
+    "@typescript-eslint/eslint-plugin": "^1.10.2",
+    "eslint": "~3.9.1",
+    "mocha": "^3.1.2",
+    "typescript": "^3.5.2"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ionic-team/stencil-eslint.git"
+  },
+  "license": "MIT"
 }
