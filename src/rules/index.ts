@@ -1,6 +1,8 @@
 
-import noAttributesConflict from './no-global-html-attribute-prop-names';
+import reservedMemberNames from './reserved-member-names';
+import singleExport from './single-export';
 
 export default {
-  'no-global-html-attribute-prop-names': noAttributesConflict
+  'reserved-member-names': reservedMemberNames,
+  'single-export': singleExport,
 };

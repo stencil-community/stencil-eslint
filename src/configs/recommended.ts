@@ -7,7 +7,8 @@ export default {
       sourceType: "module"
     },
     rules: {
-      "@stencil/no-global-html-attribute-prop-names": "error"
+      "@stencil/reserved-member-names": "error",
+      "@stencil/single-export": "error"
     },
     plugins: [
       "@typescript-eslint",
