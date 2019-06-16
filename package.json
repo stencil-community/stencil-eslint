@@ -20,7 +20,7 @@
     "test": "mocha tests --recursive"
   },
   "dependencies": {
-    "requireindex": "~1.1.0"
+    "tsutils": "^3.14.0"
   },
   "devDependencies": {
     "@types/eslint": "^4.16.6",
