@@ -14,7 +14,8 @@ export default {
       "@stencil/single-export": "error",
       "@stencil/async-methods": "error",
       "@stencil/props-must-be-public": "error",
-      "@stencil/methods-must-be-public": "error"
+      "@stencil/methods-must-be-public": "error",
+      "@stencil/decorators-context": "error"
     },
     plugins: [
       "@stencil"

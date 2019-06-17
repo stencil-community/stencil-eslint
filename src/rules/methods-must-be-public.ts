@@ -1,7 +1,6 @@
 import { Rule } from 'eslint';
 import ts from 'typescript';
 import { getDecorator, isPrivate } from '../utils';
-import * as tsutils from 'tsutils';
 
 const rule: Rule.RuleModule = {
   meta: {
