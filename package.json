@@ -23,7 +23,7 @@
     "build": "tsc -p .",
     "test": "echo 'done'",
     "version": "npm run build",
-    "release": "np"
+    "release": "np --no-release-draft"
   },
   "dependencies": {
     "@types/eslint": "^4.16.6",
