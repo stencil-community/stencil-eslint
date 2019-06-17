@@ -4,60 +4,49 @@ ESLint rules specific to Stencil JS projects.
 
 ## Installation
 
-You'll first need to install [ESLint](http://eslint.org):
+Install the following deps in your stencil project:
 
-```
-$ npm i eslint --save-dev
-```
-
-Next, install `@stencil/eslint-plugin`:
-
-```
-$ npm install @stencil/eslint-plugin --save-dev
+```bash
+npm i eslint @typescript-eslint/parser @stencil/eslint-plugin --save-dev
 ```
 
-**Note:** If you installed ESLint globally (using the `-g` flag) then you must also install `eslint-plugin-stencil` globally.
-
-**Note:** Assumes you are also using [@typescript-eslint](https://github.com/typescript-eslint/typescript-eslint).
 
 ## Usage
 
-Add `stencil` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
+Add `stencil` to the plugins section of your `.eslintrc.json` configuration file:
 
 ```json
 {
-    "plugins": [
-        "@stencil"
-    ]
-}
-```
-
-
-Then configure the rules you want to use under the rules section.
-
-```json
-{
-    "rules": {
-        "@stencil/no-global-html-attribute-prop-names": "error"
-    }
-}
-```
-
-Or alternatively extend the Stencil recommended ruleset:
-
-```
-{
-    "extends": [
-        "plugin:@stencil/recommended"
-    ]
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "extends": [
+    "plugin:@stencil/recommended"
+  ]
 }
 ```
 
 ## Supported Rules
 
-- `no-global-html-attribute-prop-names`
+- `@stencil/reserved-member-names`
 
-This rule catches Stencil Prop names that share names of [Global HTML Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes).
+This rule catches Stencil Prop names that share names of Global HTML Attributes.
+
+- `@stencil/async-methods`
+
+This rule catches Stencil public methods that are not async.
+
+- `@stencil/methods-must-be-public`
+
+This rule catches Stencil Methods marked as private or protected.
+
+- `@stencil/props-must-be-public`
+
+This rule catches Stencil Props marked as private or protected.
+
+- `@stencil/single-export`
+
+This rule catches modules that expose more than just the Stencil Component itself.
 
 ## Contributing
 
@@ -68,6 +57,6 @@ When submitting new rules please:
 
 All contributions welcome.
 
-## Licence 
+## Licence
 
 - [MIT](https://raw.githubusercontent.com/ionic-team/stencil/master/LICENSE)
