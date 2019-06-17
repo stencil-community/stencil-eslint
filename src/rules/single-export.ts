@@ -21,7 +21,7 @@ const rule: Rule.RuleModule = {
     const typeChecker = parserServices.program.getTypeChecker() as ts.TypeChecker;
     return {
       'ClassDeclaration': (node: any) => {
-        const component = getDecorator(node, 'Method');
+        const component = getDecorator(node, 'Component');
         if (component) {
           const originalNode = parserServices.esTreeNodeToTSNodeMap.get(node);
           const nonTypeExports = typeChecker.getExportsOfModule(typeChecker.getSymbolAtLocation(originalNode.getSourceFile())!)
