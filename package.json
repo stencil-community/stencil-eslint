@@ -13,7 +13,7 @@
   "contributors": [
     "Tom Chinery <tom.chinery@addtoevent.co.uk>",
     "Jack Woodward <jack@addtoevent.co.uk>",
-    "Ionic Team <team@ionicframework.com>"
+    "Ionic Team <strteam@ionicframework.com>"
   ],
   "main": "dist/index.js",
   "files": [
@@ -31,8 +31,7 @@
   },
   "peerDependencies": {
     "@typescript-eslint/parser": "^1.10.2",
-    "eslint": "^5.16.0",
-    "@types/": "^3.5.2"
+    "eslint": "^5.16.0"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
