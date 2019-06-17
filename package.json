@@ -1,6 +1,6 @@
 {
   "name": "@stencil/eslint-plugin",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "ESLint rules specific to Stencil JS projects.",
   "keywords": [
     "eslint",
@@ -12,26 +12,36 @@
   ],
   "contributors": [
     "Tom Chinery <tom.chinery@addtoevent.co.uk>",
-    "Jack Woodward <jack@addtoevent.co.uk>"
+    "Jack Woodward <jack@addtoevent.co.uk>",
+    "Ionic Team <team@ionicframework.com>"
   ],
   "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc -p .",
-    "test": "mocha tests --recursive"
+    "test": "echo 'done'",
+    "version": "npm run build",
+    "release": "np"
   },
   "dependencies": {
+    "@types/eslint": "^4.16.6",
     "tsutils": "^3.14.0"
   },
+  "peerDependencies": {
+    "@typescript-eslint/parser": "^1.10.2",
+    "eslint": "^5.16.0",
+    "@types/": "^3.5.2"
+  },
   "devDependencies": {
-    "@types/eslint": "^4.16.6",
-    "@types/estree": "0.0.39",
-    "@typescript-eslint/eslint-plugin": "^1.10.2",
-    "eslint": "~3.9.1",
-    "mocha": "^3.1.2",
+    "eslint": "^5.16.0",
+    "mocha": "^6.1.4",
+    "np": "^5.0.3",
     "typescript": "^3.5.2"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=8.9.0"
   },
   "repository": {
     "type": "git",

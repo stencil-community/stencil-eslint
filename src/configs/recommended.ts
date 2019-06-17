@@ -4,7 +4,10 @@ export default {
     files: ['*.ts', '*.tsx'],
     parserOptions: {
       ecmaVersion: 2018,
-      sourceType: "module"
+      sourceType: "module",
+      ecmaFeatures: {
+        "jsx": true
+      }
     },
     rules: {
       "@stencil/reserved-member-names": "error",
@@ -14,8 +17,7 @@ export default {
       "@stencil/methods-must-be-public": "error"
     },
     plugins: [
-      "@typescript-eslint",
       "@stencil"
     ]
-  }, ],
+  }]
 };

@@ -6,7 +6,7 @@ import * as tsutils from 'tsutils';
 const rule: Rule.RuleModule = {
   meta: {
     docs: {
-      description: "This rule catches Stencil Prop names that share names of Global HTML Attributes.",
+      description: "This rule catches Stencil Methods marked as private or protected.",
       category: "Possible Errors",
       recommended: true
     },

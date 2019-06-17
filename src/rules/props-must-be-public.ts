@@ -5,7 +5,7 @@ import { getDecorator, isPrivate } from '../utils';
 const rule: Rule.RuleModule = {
   meta: {
     docs: {
-      description: "This rule catches Stencil Prop names that share names of Global HTML Attributes.",
+      description: "This rule catches Stencil Props marked as private or protected.",
       category: "Possible Errors",
       recommended: true
     },
