@@ -1,4 +1,5 @@
 import ts from 'typescript';
+import { AsyncResource } from 'async_hooks';
 
 export function isPrivate(originalNode: ts.Node) {
   if (originalNode.modifiers) {
@@ -17,4 +18,26 @@ export function isDecoratorNamed(propName: string) {
   return (dec: any): boolean => {
     return (dec.expression && dec.expression.callee.name === propName);
   };
+}
+
+export function stencilComponentContext() {
+  let componentNode: any;
+  return {
+    rules: {
+      'ClassDeclaration': (node: any) => {
+        const component = getDecorator(node, 'Component');
+        if (component) {
+          componentNode = component;
+        }
+      },
+      'ClassDeclaration:exit': (node: any) => {
+        if (componentNode === node) {
+          componentNode = undefined;
+        }
+      }
+    },
+    isComponent() {
+      return !!componentNode;
+    }
+  }
 }

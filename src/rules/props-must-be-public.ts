@@ -1,6 +1,6 @@
 import { Rule } from 'eslint';
 import ts from 'typescript';
-import { getDecorator, isPrivate } from '../utils';
+import { getDecorator, isPrivate, stencilComponentContext } from '../utils';
 
 const rule: Rule.RuleModule = {
   meta: {
@@ -13,10 +13,13 @@ const rule: Rule.RuleModule = {
   },
 
   create(context): Rule.RuleListener {
+    const stencil = stencilComponentContext();
+
     const parserServices = context.parserServices;
     return {
+      ...stencil.rules,
       'ClassProperty': (node: any) => {
-        if (getDecorator(node, 'Prop')) {
+        if (stencil.isComponent() && getDecorator(node, 'Prop')) {
           const originalNode = parserServices.esTreeNodeToTSNodeMap.get(node) as ts.Node;
           if (isPrivate(originalNode)) {
             context.report({

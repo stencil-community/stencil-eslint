@@ -1,4 +1,5 @@
 import { Rule } from 'eslint';
+import { stencilComponentContext } from '../utils';
 
 const rule: Rule.RuleModule = {
   meta: {
@@ -11,8 +12,14 @@ const rule: Rule.RuleModule = {
   },
 
   create(context): Rule.RuleListener {
+    const stencil = stencilComponentContext();
+
     return {
+      ...stencil.rules,
       'Decorator': (node: any) => {
+        if (!stencil.isComponent()) {
+          return;
+        }
         if (node.expression && node.expression.callee) {
           const decName = node.expression.callee.name;
           if (
@@ -33,7 +40,6 @@ const rule: Rule.RuleModule = {
             decName === 'Watch' ||
             decName === 'Listen'
           ) {
-            console.log(node.parent.kind);
             if (node.parent.type !== 'MethodDefinition') {
               context.report({
                 node: node,

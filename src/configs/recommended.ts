@@ -15,7 +15,10 @@ export default {
       "@stencil/async-methods": "error",
       "@stencil/props-must-be-public": "error",
       "@stencil/methods-must-be-public": "error",
-      "@stencil/decorators-context": "error"
+      "@stencil/decorators-context": "error",
+      "@stencil/host-data-deprecated": "error",
+      "@stencil/prefer-vdom-listener": "error",
+      "@stencil/render-returns-host": "error"
     },
     plugins: [
       "@stencil"

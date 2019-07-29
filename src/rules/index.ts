@@ -5,6 +5,9 @@ import asyncMethods from './async-methods';
 import propsMustBePublic from './props-must-be-public';
 import methodsMustBePublic from './methods-must-be-public';
 import decoratorsContext from './decorators-context';
+import hostDataDeprecated from './host-data-deprecated';
+import preferVdomListener from './prefer-vdom-listener';
+import renderReturnsHost from './render-returns-host';
 
 export default {
   'reserved-member-names': reservedMemberNames,
@@ -13,4 +16,7 @@ export default {
   'props-must-be-public': propsMustBePublic,
   'methods-must-be-public': methodsMustBePublic,
   'decorators-context': decoratorsContext,
+  'host-data-deprecated': hostDataDeprecated,
+  'prefer-vdom-listener': preferVdomListener,
+  'render-returns-host': renderReturnsHost
 };
