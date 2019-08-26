@@ -1,5 +1,6 @@
 import { Rule } from 'eslint';
-import { getDecorator, stencilComponentContext } from '../utils';
+import { getDecorator, stencilComponentContext, parseDecorator } from '../utils';
+import ts from 'typescript';
 
 const rule: Rule.RuleModule = {
   meta: {
@@ -18,13 +19,16 @@ const rule: Rule.RuleModule = {
       'MethodDefinition': (node: any) => {
         if (stencil.isComponent()) {
           const listenDec = getDecorator(node, 'Listen');
-          if (listenDec && listenDec.expression.arguments.length === 1 && listenDec.expression.arguments[0].type === 'Literal') {
-            const eventName = listenDec.expression.arguments[0].value;
-            if (PREFER_VDOM_LISTENER.includes(eventName)) {
-              context.report({
-                node: listenDec,
-                message: `Use vDOM listener instead.`
-              });
+          if (listenDec) {
+            const [eventName, opts] = parseDecorator(listenDec);
+            if (typeof eventName === 'string' && opts === undefined) {
+              const eventName = listenDec.expression.arguments[0].value;
+              if (PREFER_VDOM_LISTENER.includes(eventName)) {
+                context.report({
+                  node: listenDec,
+                  message: `Use vDOM listener instead.`
+                });
+              }
             }
           }
         }

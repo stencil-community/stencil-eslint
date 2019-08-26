@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@types/eslint": "^4.16.6",
+    "eslint-utils": "^1.4.2",
     "tsutils": "^3.14.0"
   },
   "peerDependencies": {

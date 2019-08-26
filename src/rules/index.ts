@@ -8,6 +8,7 @@ import decoratorsContext from './decorators-context';
 import hostDataDeprecated from './host-data-deprecated';
 import preferVdomListener from './prefer-vdom-listener';
 import renderReturnsHost from './render-returns-host';
+import propsMustBeReadonly from './props-must-be-readonly';
 
 export default {
   'reserved-member-names': reservedMemberNames,
@@ -18,5 +19,6 @@ export default {
   'decorators-context': decoratorsContext,
   'host-data-deprecated': hostDataDeprecated,
   'prefer-vdom-listener': preferVdomListener,
-  'render-returns-host': renderReturnsHost
+  'render-returns-host': renderReturnsHost,
+  'props-must-be-readonly': propsMustBeReadonly
 };

@@ -1,5 +1,6 @@
 import ts from 'typescript';
-import { AsyncResource } from 'async_hooks';
+// @ts-ignore
+import { getStaticValue } from 'eslint-utils';
 
 export function isPrivate(originalNode: ts.Node) {
   if (originalNode.modifiers) {
@@ -13,6 +14,16 @@ export function isPrivate(originalNode: ts.Node) {
 export function getDecorator(node: any, decoratorName: string) {
   return node.decorators && node.decorators.find(isDecoratorNamed(decoratorName));
 }
+export function parseDecorator(decorator: any) {
+  if (decorator && decorator.expression.type === 'CallExpression')  {
+    return decorator.expression.arguments.map((a: any) => {
+      const parsed = getStaticValue(a);
+      return parsed ? parsed.value : undefined;
+    });
+  }
+  return [];
+}
+
 
 export function isDecoratorNamed(propName: string) {
   return (dec: any): boolean => {

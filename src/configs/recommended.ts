@@ -18,7 +18,8 @@ export default {
       "@stencil/decorators-context": "error",
       "@stencil/host-data-deprecated": "error",
       "@stencil/prefer-vdom-listener": "error",
-      "@stencil/render-returns-host": "error"
+      "@stencil/render-returns-host": "error",
+      "@stencil/props-must-be-readonly": "error"
     },
     plugins: [
       "@stencil"

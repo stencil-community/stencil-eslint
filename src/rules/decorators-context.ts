@@ -28,7 +28,6 @@ const rule: Rule.RuleModule = {
             decName === 'Element' ||
             decName === 'Event'
           ) {
-            console.log(node.parent.kind);
             if (node.parent.type !== 'ClassProperty') {
               context.report({
                 node: node,
