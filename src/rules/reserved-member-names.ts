@@ -13,8 +13,8 @@ import { stencilComponentContext } from '../utils';
 const rule: Rule.RuleModule = {
   meta: {
     docs: {
-      description: "This rule catches Stencil Prop names that share names of Global HTML Attributes.",
-      category: "Possible Errors",
+      description: 'This rule catches Stencil Prop names that share names of Global HTML Attributes.',
+      category: 'Possible Errors',
       recommended: true
     },
     schema: []
@@ -30,7 +30,7 @@ const rule: Rule.RuleModule = {
     const checkName = (node: any) => {
       if (stencil.isComponent()) {
         const decoratorName = node.expression.callee.name;
-        if (decoratorName ===  'Prop' || decoratorName === 'Method') {
+        if (decoratorName === 'Prop' || decoratorName === 'Method') {
           const propName = node.parent.key.name;
           if (isReservedMember(propName)) {
             context.report({
@@ -41,20 +41,19 @@ const rule: Rule.RuleModule = {
           if (propName.startsWith('data-')) {
             context.report({
               node: node.parent.key,
-              message: "Avoid using Global HTML Attributes as Prop names."
+              message: 'Avoid using Global HTML Attributes as Prop names.'
             });
           }
         }
       }
-    }
+    };
     return {
       ...stencil.rules,
       'ClassProperty > Decorator[expression.callee.name=Prop]': checkName,
-      'MethodDefinition > Decorator[expression.callee.name=Method]': checkName,
+      'MethodDefinition > Decorator[expression.callee.name=Method]': checkName
     };
   }
 };
-
 
 const HTML_ELEMENT_KEYS = [
   'title',
@@ -311,9 +310,8 @@ const RESERVED_PUBLIC_MEMBERS = new Set([
   ...HTML_ELEMENT_KEYS,
   ...ELEMENT_KEYS,
   ...NODE_KEYS,
-  ...JSX_KEYS,
+  ...JSX_KEYS
 ].map(p => p.toLowerCase()));
-
 
 function isReservedMember(memberName: string) {
   memberName = memberName.toLowerCase();

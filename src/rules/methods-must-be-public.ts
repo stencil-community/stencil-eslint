@@ -5,8 +5,8 @@ import { getDecorator, isPrivate, stencilComponentContext } from '../utils';
 const rule: Rule.RuleModule = {
   meta: {
     docs: {
-      description: "This rule catches Stencil Methods marked as private or protected.",
-      category: "Possible Errors",
+      description: 'This rule catches Stencil Methods marked as private or protected.',
+      category: 'Possible Errors',
       recommended: true
     },
     schema: []
@@ -31,6 +31,5 @@ const rule: Rule.RuleModule = {
     };
   }
 };
-
 
 export default rule;

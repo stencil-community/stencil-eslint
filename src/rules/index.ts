@@ -1,4 +1,3 @@
-
 import reservedMemberNames from './reserved-member-names';
 import singleExport from './single-export';
 import asyncMethods from './async-methods';

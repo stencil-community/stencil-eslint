@@ -1,12 +1,11 @@
 import { Rule } from 'eslint';
-import { getDecorator, stencilComponentContext, parseDecorator } from '../utils';
-import ts from 'typescript';
+import { getDecorator, parseDecorator, stencilComponentContext } from '../utils';
 
 const rule: Rule.RuleModule = {
   meta: {
     docs: {
-      description: "This rule catches Stencil Props marked as private or protected.",
-      category: "Possible Errors",
+      description: 'This rule catches Stencil Props marked as private or protected.',
+      category: 'Possible Errors',
       recommended: true
     },
     schema: []

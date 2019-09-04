@@ -6,8 +6,8 @@ import * as tsutils from 'tsutils';
 const rule: Rule.RuleModule = {
   meta: {
     docs: {
-      description: "This rule catches Stencil public methods that are not async.",
-      category: "Possible Errors",
+      description: 'This rule catches Stencil public methods that are not async.',
+      category: 'Possible Errors',
       recommended: true
     },
     schema: []

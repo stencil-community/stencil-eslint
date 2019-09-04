@@ -5,8 +5,8 @@ import { getDecorator } from '../utils';
 const rule: Rule.RuleModule = {
   meta: {
     docs: {
-      description: "This rule catches modules that expose more than just the Stencil Component itself.",
-      category: "Possible Errors",
+      description: 'This rule catches modules that expose more than just the Stencil Component itself.',
+      category: 'Possible Errors',
       recommended: true
     },
     schema: []

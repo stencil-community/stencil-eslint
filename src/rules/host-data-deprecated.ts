@@ -13,8 +13,8 @@ import { stencilComponentContext } from '../utils';
 const rule: Rule.RuleModule = {
   meta: {
     docs: {
-      description: "This rule catches Stencil Prop names that share names of Global HTML Attributes.",
-      category: "Possible Errors",
+      description: 'This rule catches Stencil Prop names that share names of Global HTML Attributes.',
+      category: 'Possible Errors',
       recommended: true
     },
     schema: []
@@ -39,7 +39,5 @@ const rule: Rule.RuleModule = {
     };
   }
 };
-
-
 
 export default rule;
