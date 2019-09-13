@@ -1,5 +1,3 @@
-import { Component, h } from '@stencil/core';
-
 @Component({ tag: 'sample-tag' })
 export class SampleTag {
   render() {
