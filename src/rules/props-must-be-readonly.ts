@@ -29,8 +29,8 @@ const rule: Rule.RuleModule = {
 
           const originalNode = parserServices.esTreeNodeToTSNodeMap.get(node) as ts.Node;
           const hasReadonly = !!(
-            originalNode.modifiers &&
-            originalNode.modifiers.some(m => m.kind === ts.SyntaxKind.ReadonlyKeyword)
+              originalNode.modifiers &&
+              originalNode.modifiers.some(m => m.kind === ts.SyntaxKind.ReadonlyKeyword)
           );
           if (!hasReadonly) {
             context.report({
