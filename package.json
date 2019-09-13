@@ -1,6 +1,6 @@
 {
-  "name": "@stencil/eslint-plugin",
-  "version": "0.0.3",
+  "name": "@d0whc3r/eslint-plugin-stencil",
+  "version": "0.2.0",
   "description": "ESLint rules specific to Stencil JS projects.",
   "keywords": [
     "eslint",
@@ -10,42 +10,42 @@
     "stencileslint",
     "stencil eslint"
   ],
-  "contributors": [
-    "Tom Chinery <tom.chinery@addtoevent.co.uk>",
-    "Jack Woodward <jack@addtoevent.co.uk>",
-    "Ionic Team <strteam@ionicframework.com>"
-  ],
   "main": "dist/index.js",
   "files": [
     "dist"
   ],
   "scripts": {
     "build": "tsc -p .",
-    "test": "echo 'done'",
+    "test": "jest --coverage",
     "version": "npm run build",
     "release": "np --no-release-draft"
   },
   "dependencies": {
-    "@types/eslint": "^4.16.6",
+    "@types/eslint": "^6.1.1",
+    "@typescript-eslint/parser": "^2.2.0",
     "eslint-utils": "^1.4.2",
-    "tsutils": "^3.14.0"
+    "tsutils": "^3.17.1"
   },
   "peerDependencies": {
-    "@typescript-eslint/parser": "^1.10.2",
-    "eslint": "^5.16.0"
+    "@typescript-eslint/parser": "^2.2.0",
+    "eslint": "^6.3.0"
   },
   "devDependencies": {
-    "eslint": "^5.16.0",
-    "mocha": "^6.1.4",
-    "np": "^5.0.3",
-    "typescript": "^3.5.2"
+    "@types/jest": "^24.0.18",
+    "@typescript-eslint/eslint-plugin": "^2.2.0",
+    "eslint": "^6.3.0",
+    "jest": "^24.9.0",
+    "jest-cli": "^24.9.0",
+    "np": "^5.1.0",
+    "ts-jest": "^24.1.0",
+    "typescript": "3.6.3"
   },
   "engines": {
     "node": ">=8.9.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ionic-team/stencil-eslint.git"
+    "url": "https://github.com/d0whc3r/stencil-eslint.git"
   },
   "license": "MIT"
 }

@@ -11,11 +11,13 @@ export function isPrivate(originalNode: ts.Node) {
   }
   return false;
 }
+
 export function getDecorator(node: any, decoratorName: string) {
   return node.decorators && node.decorators.find(isDecoratorNamed(decoratorName));
 }
+
 export function parseDecorator(decorator: any) {
-  if (decorator && decorator.expression.type === 'CallExpression')  {
+  if (decorator && decorator.expression.type === 'CallExpression') {
     return decorator.expression.arguments.map((a: any) => {
       const parsed = getStaticValue(a);
       return parsed ? parsed.value : undefined;
@@ -23,7 +25,6 @@ export function parseDecorator(decorator: any) {
   }
   return [];
 }
-
 
 export function isDecoratorNamed(propName: string) {
   return (dec: any): boolean => {
@@ -50,5 +51,5 @@ export function stencilComponentContext() {
     isComponent() {
       return !!componentNode;
     }
-  }
+  };
 }

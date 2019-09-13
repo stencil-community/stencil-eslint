@@ -5,8 +5,8 @@ import { getDecorator } from '../utils';
 const rule: Rule.RuleModule = {
   meta: {
     docs: {
-      description: "This rule catches modules that expose more than just the Stencil Component itself.",
-      category: "Possible Errors",
+      description: 'This rule catches modules that expose more than just the Stencil Component itself.',
+      category: 'Possible Errors',
       recommended: true
     },
     schema: []
@@ -24,14 +24,15 @@ const rule: Rule.RuleModule = {
         const component = getDecorator(node, 'Component');
         if (component) {
           const originalNode = parserServices.esTreeNodeToTSNodeMap.get(node);
-          const nonTypeExports = typeChecker.getExportsOfModule(typeChecker.getSymbolAtLocation(originalNode.getSourceFile())!)
-            .filter(symbol => (symbol.flags & (ts.SymbolFlags.Interface | ts.SymbolFlags.TypeAlias)) === 0)
-            .filter(symbol => symbol.name !== originalNode.name.text);
+          const nonTypeExports = typeChecker.getExportsOfModule(
+              typeChecker.getSymbolAtLocation(originalNode.getSourceFile())!)
+              .filter(symbol => (symbol.flags & (ts.SymbolFlags.Interface | ts.SymbolFlags.TypeAlias)) === 0)
+              .filter(symbol => symbol.name !== originalNode.name.text);
 
           nonTypeExports.forEach(symbol => {
             const errorNode = (symbol.valueDeclaration)
-              ? parserServices.tsNodeToESTreeNodeMap.get(symbol.valueDeclaration).id
-              : parserServices.tsNodeToESTreeNodeMap.get(symbol.declarations[0]);
+                ? parserServices.tsNodeToESTreeNodeMap.get(symbol.valueDeclaration).id
+                : parserServices.tsNodeToESTreeNodeMap.get(symbol.declarations[0]);
 
             context.report({
               node: errorNode,
