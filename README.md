@@ -1,4 +1,4 @@
-# @stencil/eslint-plugin
+# @d0whc3r/eslint-plugin-stencil
 
 ESLint rules specific to Stencil JS projects.
 
