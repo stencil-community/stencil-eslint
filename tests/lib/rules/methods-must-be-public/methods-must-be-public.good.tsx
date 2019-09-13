@@ -1,7 +1,9 @@
 @Component({ tag: 'sample-tag' })
 export class SampleTag {
-  @Prop() private testPrivate?: string;
-  @Prop() protected testProtected?: string;
+  @Method()
+  async someMethod() {
+    return 'method';
+  }
 
   render() {
     return (<div>test</div>);

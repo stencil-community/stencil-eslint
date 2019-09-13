@@ -1,14 +1,14 @@
-import rule from '../../../../src/rules/props-must-be-public';
+import rule from '../../../../src/rules/methods-must-be-public';
 import { ruleTester } from '../rule-tester';
 import * as path from 'path';
 import * as fs from 'fs';
 
 describe('stencil rules', () => {
   const files = {
-    good: path.resolve(__dirname, 'props-must-be-public.good.tsx'),
-    wrong: path.resolve(__dirname, 'props-must-be-public.wrong.tsx')
+    good: path.resolve(__dirname, 'methods-must-be-public.good.tsx'),
+    wrong: path.resolve(__dirname, 'methods-must-be-public.wrong.tsx')
   };
-  ruleTester.run('props-must-be-public', rule, {
+  ruleTester.run('methods-must-be-public', rule, {
     valid: [
       {
         code: fs.readFileSync(files.good, 'utf8'),

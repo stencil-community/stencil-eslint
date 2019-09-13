@@ -5,7 +5,7 @@ import { getDecorator, parseDecorator, stencilComponentContext } from '../utils'
 const rule: Rule.RuleModule = {
   meta: {
     docs: {
-      description: 'This rule catches Stencil Props marked as private or protected.',
+      description: 'This rule catches Stencil Props marked as non readonly.',
       category: 'Possible Errors',
       recommended: true
     },
