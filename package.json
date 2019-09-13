@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "build": "tsc -p .",
-    "test": "jest",
+    "test": "jest --coverage",
     "version": "npm run build",
     "release": "np --no-release-draft"
   },

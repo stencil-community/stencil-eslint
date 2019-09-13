@@ -5,6 +5,7 @@ export class SampleTag {
 
   @Watch() element!: HTMLElement;
 
+  @Component({ tag: 'sample-tag' })
   @Prop()
   async someMethod() {
     return 'method';

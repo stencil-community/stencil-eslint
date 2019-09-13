@@ -86,17 +86,17 @@ const rule: Rule.RuleModule = {
           const config: DecoratorsStyleOptionsEnum = options[decoder];
           if (getDecorator(node, decName) && config && config !== 'ignore') {
             const originalNode = parserServices.esTreeNodeToTSNodeMap.get(node) as ts.Node;
-            const separator = config === 'multiline' ? '\\n' : ' ';
+            const separator = config === 'multiline' ? '\n' : ' ';
             const text = String(originalNode.getFullText());
-            const regex = new RegExp(`@${decName}\\([\\w'"-]*\\)([${separator}]+)`);
-            if (!regex.test(text)) {
+            const regExp = new RegExp(`@${decName}\\([\\w'"-]*\\)([${separator}]+)`);
+            if (!regExp.test(text)) {
               context.report({
                 node: node,
                 message: `The @${decName} decorator can only be applied as ${config}.`,
                 fix(fixer) {
-                  const oposite = config === 'multiline' ? ' ' : '\\n';
-                  const result = text.replace((new RegExp(`(@${decName}\\([\\w'"-]*\\))([${oposite}]+)`)),
-                      `$1${separator}`);
+                  const oposite = config === 'multiline' ? ' ' : '\n';
+                  const matchRegExp = new RegExp(`(@${decName}\\([\\w'"-]*\\))([${oposite}]+)`);
+                  const result = text.replace(matchRegExp, `$1${separator}`);
                   return fixer.replaceText(node, result);
                 }
               });
