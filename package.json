@@ -18,7 +18,7 @@
     "build": "tsc -p .",
     "test": "jest --coverage",
     "version": "npm run build",
-    "release": "np --no-release-draft"
+    "release": "np"
   },
   "dependencies": {
     "@types/eslint": "^6.1.1",
