@@ -10,7 +10,8 @@ const rule: Rule.RuleModule = {
     },
     schema: [
       {
-        type: 'array'
+        type: 'array',
+        minLength: 1
       }
     ],
     type: 'layout'

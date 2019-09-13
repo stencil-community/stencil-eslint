@@ -2,7 +2,7 @@ import { Rule } from 'eslint';
 import ts from 'typescript';
 import { getDecorator, stencilComponentContext } from '../utils';
 
-type DecoratorsStyleOptionsEnum = 'singleline' | 'multiline' | 'ignore';
+type DecoratorsStyleOptionsEnum = 'inline' | 'multiline' | 'ignore';
 
 interface DecoratorsStyleOptions {
   prop?: DecoratorsStyleOptionsEnum;
@@ -14,12 +14,12 @@ interface DecoratorsStyleOptions {
   listen?: DecoratorsStyleOptionsEnum;
 }
 
-const ENUMERATE = ['singleline', 'multiline', 'ignore'];
+const ENUMERATE = ['inline', 'multiline', 'ignore'];
 const DEFAULTS: DecoratorsStyleOptions = {
-  prop: 'singleline',
-  state: 'singleline',
-  element: 'singleline',
-  event: 'singleline',
+  prop: 'inline',
+  state: 'inline',
+  element: 'inline',
+  event: 'inline',
   method: 'multiline',
   watch: 'multiline',
   listen: 'multiline'
@@ -27,7 +27,7 @@ const DEFAULTS: DecoratorsStyleOptions = {
 const rule: Rule.RuleModule = {
   meta: {
     docs: {
-      description: 'This rule catches Stencil Decorators used in incorrect locations.',
+      description: 'This rule catches Stencil Decorators not used in consistent style.',
       category: 'Possible Errors',
       recommended: true
     },
