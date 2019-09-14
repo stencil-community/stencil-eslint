@@ -11,19 +11,30 @@ export default {
         }
       },
       rules: {
-        '@stencil/reserved-member-names': 'error',
-        '@stencil/single-export': 'error',
-        '@stencil/async-methods': 'error',
-        '@stencil/props-must-be-public': 'error',
-        '@stencil/methods-must-be-public': 'error',
-        '@stencil/decorators-context': 'error',
-        '@stencil/host-data-deprecated': 'error',
-        '@stencil/prefer-vdom-listener': 'error',
-        '@stencil/render-returns-host': 'error',
-        '@stencil/props-must-be-readonly': 'error'
+        '@d0whc3r/stencil/async-methods': 'error',
+        '@d0whc3r/stencil/ban-prefix': 'error',
+        '@d0whc3r/stencil/decorators-context': 'error',
+        '@d0whc3r/stencil/decorators-style': [
+          'error', {
+            prop: 'inline',
+            state: 'inline',
+            element: 'inline',
+            event: 'inline',
+            method: 'multiline',
+            watch: 'multiline',
+            listen: 'multiline'
+          }],
+        '@d0whc3r/stencil/host-data-deprecated': 'error',
+        '@d0whc3r/stencil/methods-must-be-public': 'error',
+        '@d0whc3r/stencil/prefer-vdom-listener': 'error',
+        '@d0whc3r/stencil/props-must-be-public': 'error',
+        '@d0whc3r/stencil/props-must-be-readonly': 'error',
+        '@d0whc3r/stencil/render-returns-host': 'error',
+        '@d0whc3r/stencil/reserved-member-names': 'error',
+        '@d0whc3r/stencil/single-export': 'error'
       },
       plugins: [
-        '@stencil'
+        '@d0whc3r/stencil'
       ]
     }]
 };
