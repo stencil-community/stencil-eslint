@@ -6,3 +6,10 @@ Ensures that all `Methods` are `async`.
 
 No config is needed
 
+## Usage
+
+```json
+{ "@d0whc3r/stencil/async-methods": "error" }
+```
+
+> Fix included

@@ -6,3 +6,8 @@ Ensures that all `render` functions are not returning an array.
 
 No config is needed
 
+## Usage
+
+```json
+{ "@d0whc3r/stencil/render-returns-host": "error" }
+```

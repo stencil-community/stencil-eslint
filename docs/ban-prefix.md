@@ -9,11 +9,11 @@ An array of `"string"`s which no Component `tag` will be allowed to use as a pre
 ### Config examples
 
 ```json
-{ "ban-prefix": [2, "stencil"] }
+{ "ban-prefix": ["error", ["stencil"]] }
 ```
 
 ```json
-{ "ban-prefix": [2, "stencil", "st", "stnl"] }
+{ "ban-prefix": ["error", ["stencil", "st", "stnl"]] }
 ```
 
 ## Schema

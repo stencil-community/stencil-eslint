@@ -18,7 +18,7 @@ If decorators are composed (multiple decorators for a single declaration), "mult
 ### Config examples
 
 ```json
-{ "decorators-style": [2, { "prop": "inline", "method": "multiline" }] }
+{ "decorators-style": ["error", { "prop": "inline", "method": "multiline" }] }
 ```
 
 ## Schema
@@ -31,3 +31,5 @@ If decorators are composed (multiple decorators for a single declaration), "mult
   }
 }
 ```
+
+> Fix included
