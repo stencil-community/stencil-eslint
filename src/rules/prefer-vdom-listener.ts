@@ -16,18 +16,19 @@ const rule: Rule.RuleModule = {
     return {
       ...stencil.rules,
       'MethodDefinition': (node: any) => {
-        if (stencil.isComponent()) {
-          const listenDec = getDecorator(node, 'Listen');
-          if (listenDec) {
-            const [eventName, opts] = parseDecorator(listenDec);
-            if (typeof eventName === 'string' && opts === undefined) {
-              const eventName = listenDec.expression.arguments[0].value;
-              if (PREFER_VDOM_LISTENER.includes(eventName)) {
-                context.report({
-                  node: listenDec,
-                  message: `Use vDOM listener instead.`
-                });
-              }
+        if (!stencil.isComponent()) {
+          return;
+        }
+        const listenDec = getDecorator(node, 'Listen');
+        if (listenDec) {
+          const [eventName, opts] = parseDecorator(listenDec);
+          if (typeof eventName === 'string' && opts === undefined) {
+            const eventName = listenDec.expression.arguments[0].value;
+            if (PREFER_VDOM_LISTENER.includes(eventName)) {
+              context.report({
+                node: listenDec,
+                message: `Use vDOM listener instead.`
+              });
             }
           }
         }

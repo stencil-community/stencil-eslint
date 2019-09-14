@@ -1,6 +1,6 @@
 import { Rule } from 'eslint';
 import ts from 'typescript';
-import { getDecorator } from '../utils';
+import { getDecorator, stencilComponentContext } from '../utils';
 import * as tsutils from 'tsutils';
 
 const rule: Rule.RuleModule = {
@@ -15,13 +15,12 @@ const rule: Rule.RuleModule = {
   },
 
   create(context): Rule.RuleListener {
-
-    //----------------------------------------------------------------------
-    // Public
-    //----------------------------------------------------------------------
+    const stencil = stencilComponentContext();
     const parserServices = context.parserServices;
     const typeChecker = parserServices.program.getTypeChecker() as ts.TypeChecker;
+
     return {
+      ...stencil.rules,
       'MethodDefinition': (node: any) => {
         if (getDecorator(node, 'Method')) {
           const method = parserServices.esTreeNodeToTSNodeMap.get(node);

@@ -13,10 +13,6 @@ const rule: Rule.RuleModule = {
   },
 
   create(context): Rule.RuleListener {
-
-    //----------------------------------------------------------------------
-    // Public
-    //----------------------------------------------------------------------
     const parserServices = context.parserServices;
     const typeChecker = parserServices.program.getTypeChecker() as ts.TypeChecker;
     return {

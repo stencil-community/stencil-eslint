@@ -33,15 +33,16 @@ const rule: Rule.RuleModule = {
     return {
       ...stencil.rules,
       'MethodDefinition[key.name=render] ReturnStatement': (node: any) => {
-        if (stencil.isComponent()) {
-          const originalNode = parserServices.esTreeNodeToTSNodeMap.get(node.argument) as ts.MethodDeclaration;
-          const type = typeChecker.getTypeAtLocation(originalNode);
-          if (type && type.symbol && type.symbol.escapedName === 'Array') {
-            context.report({
-              node: node,
-              message: `Avoid returning an array in the render() function, use <Host> instead.`
-            });
-          }
+        if (!stencil.isComponent()) {
+          return;
+        }
+        const originalNode = parserServices.esTreeNodeToTSNodeMap.get(node.argument) as ts.MethodDeclaration;
+        const type = typeChecker.getTypeAtLocation(originalNode);
+        if (type && type.symbol && type.symbol.escapedName === 'Array') {
+          context.report({
+            node: node,
+            message: `Avoid returning an array in the render() function, use <Host> instead.`
+          });
         }
       }
     };

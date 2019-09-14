@@ -81,22 +81,30 @@ const rule: Rule.RuleModule = {
           return;
         }
 
-        Object.keys(options).forEach((decoder) => {
-          const decName = decoder[0].toUpperCase() + decoder.slice(1);
-          const config: DecoratorsStyleOptionsEnum = options[decoder];
+        Object.keys(options).forEach((optDec) => {
+          const decName = optDec[0].toUpperCase() + optDec.slice(1);
+          const config: DecoratorsStyleOptionsEnum = options[optDec];
           if (getDecorator(node, decName) && config && config !== 'ignore') {
             const originalNode = parserServices.esTreeNodeToTSNodeMap.get(node) as ts.Node;
-            const separator = config === 'multiline' ? '\n' : ' ';
-            const text = String(originalNode.getFullText());
-            const regExp = new RegExp(`@${decName}\\([\\w'"-]*\\)([${separator}]+)`);
+            const nodeIndex = node.decorators.findIndex(
+                (dec: any) => dec.expression.callee.name.toLowerCase() === optDec);
+            const nodeDec = originalNode.decorators![nodeIndex];
+            const decoratorBase = nodeDec.getText();
+            const text = String(originalNode.getText());
+            const decorator = decoratorBase
+                .replace('(', '\\(')
+                .replace(')', '\\)');
+            const separator = config === 'multiline' ? '\\n' : ' ';
+            const regExp = new RegExp(`${decorator}([${separator}]+)`, 'i');
             if (!regExp.test(text)) {
               context.report({
                 node: node,
                 message: `The @${decName} decorator can only be applied as ${config}.`,
                 fix(fixer) {
-                  const oposite = config === 'multiline' ? ' ' : '\n';
-                  const matchRegExp = new RegExp(`(@${decName}\\([\\w'"-]*\\))([${oposite}]+)`);
-                  const result = text.replace(matchRegExp, `$1${separator}`);
+                  const opposite = config === 'multiline' ? ' ' : '\\n';
+                  const separatorChar = config === 'multiline' ? '\n' : ' ';
+                  const matchRegExp = new RegExp(`(${decorator})([${opposite}]+)`, 'i');
+                  const result = text.replace(matchRegExp, `$1${separatorChar}`);
                   return fixer.replaceText(node, result);
                 }
               });

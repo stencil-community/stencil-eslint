@@ -28,22 +28,23 @@ const rule: Rule.RuleModule = {
     const stencil = stencilComponentContext();
 
     const checkName = (node: any) => {
-      if (stencil.isComponent()) {
-        const decoratorName = node.expression.callee.name;
-        if (decoratorName === 'Prop' || decoratorName === 'Method') {
-          const propName = node.parent.key.name;
-          if (isReservedMember(propName)) {
-            context.report({
-              node: node.parent.key,
-              message: `The @${decoratorName} name "${propName} conflicts with a key in the HTMLElement prototype. Please choose a different name.`
-            });
-          }
-          if (propName.startsWith('data-')) {
-            context.report({
-              node: node.parent.key,
-              message: 'Avoid using Global HTML Attributes as Prop names.'
-            });
-          }
+      if (!stencil.isComponent()) {
+        return;
+      }
+      const decoratorName = node.expression.callee.name;
+      if (decoratorName === 'Prop' || decoratorName === 'Method') {
+        const propName = node.parent.key.name;
+        if (isReservedMember(propName)) {
+          context.report({
+            node: node.parent.key,
+            message: `The @${decoratorName} name "${propName} conflicts with a key in the HTMLElement prototype. Please choose a different name.`
+          });
+        }
+        if (propName.startsWith('data-')) {
+          context.report({
+            node: node.parent.key,
+            message: 'Avoid using Global HTML Attributes as Prop names.'
+          });
         }
       }
     };

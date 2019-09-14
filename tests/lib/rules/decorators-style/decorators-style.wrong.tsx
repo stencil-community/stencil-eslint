@@ -1,7 +1,7 @@
 @Component({ tag: 'sample-tag' })
 export class SampleTag {
 
-  @Prop()
+  @Prop({ mutable: true })
   test?: string;
 
   @Element()
