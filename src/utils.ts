@@ -5,8 +5,8 @@ import { getStaticValue } from 'eslint-utils';
 export function isPrivate(originalNode: ts.Node) {
   if (originalNode.modifiers) {
     return originalNode.modifiers.some(m => (
-      m.kind === ts.SyntaxKind.PrivateKeyword ||
-      m.kind === ts.SyntaxKind.ProtectedKeyword
+        m.kind === ts.SyntaxKind.PrivateKeyword ||
+        m.kind === ts.SyntaxKind.ProtectedKeyword
     ));
   }
   return false;
