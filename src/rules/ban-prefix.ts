@@ -39,7 +39,7 @@ const rule: Rule.RuleModule = {
         if (match) {
           context.report({
             node: node,
-            message: `The component with tagName ${tag} have a banned prefix.`
+            message: `The component with tag name ${tag} have a banned prefix.`
           });
         }
       }
