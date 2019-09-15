@@ -11,7 +11,7 @@ const rule: Rule.RuleModule = {
       recommended: true
     },
     schema: [],
-    type: 'suggestion',
+    type: 'layout',
     fixable: 'code'
   },
 
@@ -63,7 +63,6 @@ const rule: Rule.RuleModule = {
           return;
         }
         const originalNode = parserServices.esTreeNodeToTSNodeMap.get(node);
-        const body = originalNode.body.getFullText();
         const statements = originalNode.body.statements;
         if (statements && statements.length) {
           removeUsedVars(statements);
@@ -79,7 +78,7 @@ const rule: Rule.RuleModule = {
           const text = originalNode.getFullText();
           const parsed = parseDecorator(varNode);
           context.report({
-            node: varNode,
+            node: varNode.key,
             message: `@Prop() "${varName}" should not be mutable`,
             fix(fixer) {
               const options = parsed && parsed.length && parsed[0] || {};
