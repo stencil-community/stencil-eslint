@@ -20,40 +20,38 @@ const rule: Rule.RuleModule = {
 
     const parserServices = context.parserServices;
 
-    function getJSDoc() {
-      return (node: any) => {
-        if (!stencil.isComponent()) {
-          return;
-        }
+    function getJSDoc(node: any) {
+      if (!stencil.isComponent()) {
+        return;
+      }
 
-        DECORATORS.forEach((decName) => {
-          if (getDecorator(node, decName)) {
-            const originalNode = parserServices.esTreeNodeToTSNodeMap.get(node);
-            const jsDoc = originalNode.jsDoc;
-            const isValid = jsDoc && jsDoc.length;
-            const haveTags = isValid &&
-                jsDoc.some((jsdoc: any) => jsdoc.tags && jsdoc.tags.length && jsdoc.tags.some(
-                    (tag: any) => INVALID_TAGS.includes(tag.tagName.escapedText.toLowerCase())));
-            if (!isValid) {
-              context.report({
-                node: node,
-                message: `The @${decName} decorator must to be documented.`
-              });
-            } else if (haveTags) {
-              context.report({
-                node: node,
-                message: `The @${decName} decorator have not valid tags (${INVALID_TAGS.join(', ')}).`
-              });
-            }
+      DECORATORS.forEach((decName) => {
+        if (getDecorator(node, decName)) {
+          const originalNode = parserServices.esTreeNodeToTSNodeMap.get(node);
+          const jsDoc = originalNode.jsDoc;
+          const isValid = jsDoc && jsDoc.length;
+          const haveTags = isValid &&
+              jsDoc.some((jsdoc: any) => jsdoc.tags && jsdoc.tags.length && jsdoc.tags.some(
+                  (tag: any) => INVALID_TAGS.includes(tag.tagName.escapedText.toLowerCase())));
+          if (!isValid) {
+            context.report({
+              node: node,
+              message: `The @${decName} decorator must to be documented.`
+            });
+          } else if (haveTags) {
+            context.report({
+              node: node,
+              message: `The @${decName} decorator have not valid tags (${INVALID_TAGS.join(', ')}).`
+            });
           }
-        });
-      };
+        }
+      });
     }
 
     return {
       ...stencil.rules,
-      'ClassProperty': getJSDoc(),
-      'MethodDefinition': getJSDoc()
+      'ClassProperty': getJSDoc,
+      'MethodDefinition': getJSDoc
     };
   }
 };

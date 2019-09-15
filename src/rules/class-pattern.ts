@@ -6,7 +6,7 @@ const rule: Rule.RuleModule = {
     docs: {
       description: 'This rule catches usages of non valid class names.',
       category: 'Possible Errors',
-      recommended: true
+      recommended: false
     },
     schema: [
       {
