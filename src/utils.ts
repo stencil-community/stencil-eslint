@@ -59,3 +59,15 @@ export function getType(node: any) {
 }
 
 export const stencilDecorators = ['Component', 'Prop', 'State', 'Watch', 'Element', 'Method', 'Event', 'Listen'];
+
+export const stencilLifecycle = [
+  'connectedCallback',
+  'disconnectedCallback',
+  'componentWillLoad',
+  'componentDidLoad',
+  'componentWillRender',
+  'componentDidRender',
+  'componentWillUpdate',
+  'componentDidUpdate',
+  'render'
+];

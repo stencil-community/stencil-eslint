@@ -63,6 +63,10 @@ This rule catches Stencil Methods marked as private or protected.
 
 This rule catches Stencil Watchs with non existing Props or States.
 
+- [`@d0whc3r/stencil/own-methods-must-be-private`](./docs/own-methods-must-be-private.md)
+
+This rule catches own class methods marked as public.
+
 - [`@d0whc3r/stencil/own-props-must-be-private`](./docs/own-props-must-be-private.md)
 
 This rule catches own class properties marked as public.
@@ -120,6 +124,7 @@ This rule catches modules that expose more than just the Stencil Component itsel
   "@d0whc3r/stencil/host-data-deprecated": "error",
   "@d0whc3r/stencil/methods-must-be-public": "error",
   "@d0whc3r/stencil/no-unused-watch": "error",
+  "@d0whc3r/stencil/own-methods-must-be-private": "error",
   "@d0whc3r/stencil/own-props-must-be-private": "error",
   "@d0whc3r/stencil/prefer-vdom-listener": "error",
   "@d0whc3r/stencil/props-must-be-public": "error",

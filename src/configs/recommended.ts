@@ -28,6 +28,7 @@ export default {
         '@d0whc3r/stencil/host-data-deprecated': 'error',
         '@d0whc3r/stencil/methods-must-be-public': 'error',
         '@d0whc3r/stencil/no-unused-watch': 'error',
+        '@d0whc3r/stencil/own-methods-must-be-private': 'error',
         '@d0whc3r/stencil/own-props-must-be-private': 'error',
         '@d0whc3r/stencil/prefer-vdom-listener': 'error',
         '@d0whc3r/stencil/props-must-be-public': 'error',

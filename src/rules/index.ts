@@ -7,6 +7,7 @@ import elementType from './element-type';
 import hostDataDeprecated from './host-data-deprecated';
 import methodsMustBePublic from './methods-must-be-public';
 import noUnusedWatch from './no-unused-watch';
+import ownMethodsMustBePrivate from './own-methods-must-be-private';
 import ownPropsMustBePrivate from './own-props-must-be-private';
 import preferVdomListener from './prefer-vdom-listener';
 import propsMustBePublic from './props-must-be-public';
@@ -27,6 +28,7 @@ export default {
   'host-data-deprecated': hostDataDeprecated,
   'methods-must-be-public': methodsMustBePublic,
   'no-unused-watch': noUnusedWatch,
+  'own-methods-must-be-private': ownMethodsMustBePrivate,
   'own-props-must-be-private': ownPropsMustBePrivate,
   'prefer-vdom-listener': preferVdomListener,
   'props-must-be-public': propsMustBePublic,
