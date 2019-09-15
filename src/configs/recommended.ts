@@ -25,6 +25,7 @@ export default {
             watch: 'multiline',
             listen: 'multiline'
           }],
+        '@d0whc3r/stencil/element-type': 'error',
         '@d0whc3r/stencil/host-data-deprecated': 'error',
         '@d0whc3r/stencil/methods-must-be-public': 'error',
         '@d0whc3r/stencil/prefer-vdom-listener': 'error',

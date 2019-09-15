@@ -3,6 +3,7 @@ import banPrefix from './ban-prefix';
 import classSuffix from './class-suffix';
 import decoratorsContext from './decorators-context';
 import decoratorsStyle from './decorators-style';
+import elementType from './element-type';
 import hostDataDeprecated from './host-data-deprecated';
 import methodsMustBePublic from './methods-must-be-public';
 import preferVdomListener from './prefer-vdom-listener';
@@ -20,6 +21,7 @@ export default {
   'class-suffix': classSuffix,
   'decorators-context': decoratorsContext,
   'decorators-style': decoratorsStyle,
+  'element-type': elementType,
   'host-data-deprecated': hostDataDeprecated,
   'methods-must-be-public': methodsMustBePublic,
   'prefer-vdom-listener': preferVdomListener,
