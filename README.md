@@ -47,6 +47,10 @@ This rule catches Stencil decorators in bad locations.
 
 This rule catches Stencil decorators style usage.
 
+- [`@d0whc3r/stencil/element-type`](./docs/element-type.md)
+
+This rule catches Stencil Element decorator have the correct type.
+
 - [`@d0whc3r/stencil/host-data-deprecated`](./docs/host-data-deprecated.md)
 
 This rule catches Stencil method hostData.
