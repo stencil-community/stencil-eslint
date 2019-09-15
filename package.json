@@ -1,6 +1,6 @@
 {
   "name": "@d0whc3r/eslint-plugin-stencil",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "description": "ESLint rules specific to Stencil JS projects.",
   "keywords": [
     "eslint",
