@@ -1,6 +1,6 @@
 import asyncMethods from './async-methods';
 import banPrefix from './ban-prefix';
-import classSuffix from './class-suffix';
+import classPattern from './class-pattern';
 import decoratorsContext from './decorators-context';
 import decoratorsStyle from './decorators-style';
 import elementType from './element-type';
@@ -18,7 +18,7 @@ import singleExport from './single-export';
 export default {
   'async-methods': asyncMethods,
   'ban-prefix': banPrefix,
-  'class-suffix': classSuffix,
+  'class-pattern': classPattern,
   'decorators-context': decoratorsContext,
   'decorators-style': decoratorsStyle,
   'element-type': elementType,

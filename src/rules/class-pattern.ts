@@ -1,17 +1,29 @@
 import { Rule } from 'eslint';
 import { getDecorator, parseDecorator, stencilComponentContext } from '../utils';
 
-const REQUIRED_SUFFIX = 'Component';
-
 const rule: Rule.RuleModule = {
   meta: {
     docs: {
-      description: 'This rule catches usages of non valid class suffix.',
+      description: 'This rule catches usages of non valid class names.',
       category: 'Possible Errors',
       recommended: true
     },
-    schema: [],
-    type: 'layout'
+    schema: [
+      {
+        type: 'object',
+        properties: {
+          pattern: {
+            type: 'string'
+          },
+          ignoreCase: {
+            type: 'boolean',
+            required: false
+          }
+        },
+        additionalProperties: false
+      }],
+    type: 'problem'
+
   },
 
   create(context): Rule.RuleListener {
@@ -22,18 +34,20 @@ const rule: Rule.RuleModule = {
       ...stencil.rules,
       'ClassDeclaration': (node: any) => {
         const component = getDecorator(node, 'Component');
-        if (!component) {
+        const options = context.options[0];
+        const { pattern, ignoreCase } = options || {};
+        if (!component || !options || !pattern) {
           return;
         }
         const originalNode = parserServices.esTreeNodeToTSNodeMap.get(node);
         const className = originalNode.symbol.escapedName;
-        const match = className.endsWith(REQUIRED_SUFFIX);
+        const regExp = new RegExp(pattern, ignoreCase ? 'i' : undefined);
 
-        if (!match) {
+        if (!regExp.test(className)) {
           const [{ tag }] = parseDecorator(component);
           context.report({
             node: node,
-            message: `The component with tag name ${tag} haven't got a valid suffix (...${REQUIRED_SUFFIX}).`
+            message: `The class name in component with tag name ${tag} is not valid (${regExp}).`
           });
         }
       }

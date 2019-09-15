@@ -35,9 +35,9 @@ This rule catches Stencil public methods that are not async.
 
 This rule catches Stencil Component banned tag name prefix.
 
-- [`@d0whc3r/stencil/class-suffix`](./docs/class-suffix.md)
+- [`@d0whc3r/stencil/class-pattern`](./docs/class-pattern.md)
 
-This rule catches Stencil Component suffix for class name.
+This rule catches Stencil Component class name not matching configurable pattern.
 
 - [`@d0whc3r/stencil/decorators-context`](./docs/decorators-context.md)
 
@@ -97,7 +97,6 @@ This rule catches modules that expose more than just the Stencil Component itsel
 {
   "@d0whc3r/stencil/async-methods": "error",
   "@d0whc3r/stencil/ban-prefix": ["error", ["stencil", "stnl", "st"]],
-  "@d0whc3r/stencil/class-suffix": "error",
   "@d0whc3r/stencil/decorators-context": "error",
   "@d0whc3r/stencil/decorators-style": [
     "error", {
@@ -109,6 +108,7 @@ This rule catches modules that expose more than just the Stencil Component itsel
       "watch": "multiline",
       "listen": "multiline"
     }],
+  "@d0whc3r/stencil/element-type": "error",
   "@d0whc3r/stencil/host-data-deprecated": "error",
   "@d0whc3r/stencil/methods-must-be-public": "error",
   "@d0whc3r/stencil/prefer-vdom-listener": "error",

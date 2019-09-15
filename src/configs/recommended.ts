@@ -13,7 +13,6 @@ export default {
       rules: {
         '@d0whc3r/stencil/async-methods': 'error',
         '@d0whc3r/stencil/ban-prefix': ['error', ['stencil', 'stnl', 'st']],
-        '@d0whc3r/stencil/class-suffix': 'error',
         '@d0whc3r/stencil/decorators-context': 'error',
         '@d0whc3r/stencil/decorators-style': [
           'error', {
