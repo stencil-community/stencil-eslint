@@ -14,6 +14,8 @@ export class SampleTag {
   private onClick(e: Event) {
     e.preventDefault();
     if (!this.testNotMutable) {
+      this.testMutable = true;
+    } else if(this.testMutable === undefined) {
       this.testMutable2 = !this.testMutable2;
     }
   }

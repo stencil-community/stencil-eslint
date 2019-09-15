@@ -36,23 +36,29 @@ const rule: Rule.RuleModule = {
       if (expression.left && expression.left.name) {
         return expression.left.name;
       }
-      return false;
+      return null;
     }
 
-    function removeUsedVars(statements: any) {
+    function removeUsedVars(statements: any[]) {
       statements
-          .filter((st: any) => st.expression)
-          .map((st: any) => getName(st.expression))
-          .filter((name: any) => !!name)
-          .forEach((name: any) => {
+          .filter((st) => st.expression)
+          .map((st) => getName(st.expression))
+          .filter((name) => !!name)
+          .forEach((name) => {
             mutableProps.delete(name.escapedText);
           });
       statements
-          .filter((st: any) => st.thenStatement && st.thenStatement.statements)
-          .map((st: any) => st.thenStatement.statements)
-          .forEach((st: any) => {
+          .filter((st) => st.thenStatement && st.thenStatement.statements)
+          .map((st) => st.thenStatement.statements)
+          .forEach((st) => {
             removeUsedVars(st);
-          })
+          });
+      statements
+          .filter((st) => st.elseStatement)
+          .forEach((st) => {
+            const sts = Array.isArray(st.elseStatement) ? st.elseStatement : [st.elseStatement];
+            removeUsedVars(sts);
+          });
     }
 
     return {
