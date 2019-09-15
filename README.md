@@ -35,6 +35,10 @@ This rule catches Stencil public methods that are not async.
 
 This rule catches Stencil Component banned tag name prefix.
 
+- [`@d0whc3r/stencil/class-suffix`](./docs/class-suffix.md)
+
+This rule catches Stencil Component suffix for class name.
+
 - [`@d0whc3r/stencil/decorators-context`](./docs/decorators-context.md)
 
 This rule catches Stencil decorators in bad locations.
@@ -67,6 +71,10 @@ This rule catches Stencil Props marked as non readonly, excluding mutable ones.
 
 This rule catches Stencil Render returning array instead of Host tag.
 
+- [`@d0whc3r/stencil/required-jsdoc`](./docs/required-jsdoc.md)
+
+This rule catches Stencil Props, Methods and Events to define jsdoc.
+
 - [`@d0whc3r/stencil/required-prefix`](./docs/required-prefix.md)
 
 This rule catches Stencil Component required tag name prefix.
@@ -84,7 +92,8 @@ This rule catches modules that expose more than just the Stencil Component itsel
 ```json
 {
   "@d0whc3r/stencil/async-methods": "error",
-  "@d0whc3r/stencil/ban-prefix": "error",
+  "@d0whc3r/stencil/ban-prefix": ["error", ["stencil", "stnl", "st"]],
+  "@d0whc3r/stencil/class-suffix": "error",
   "@d0whc3r/stencil/decorators-context": "error",
   "@d0whc3r/stencil/decorators-style": [
     "error", {
@@ -102,6 +111,7 @@ This rule catches modules that expose more than just the Stencil Component itsel
   "@d0whc3r/stencil/props-must-be-public": "error",
   "@d0whc3r/stencil/props-must-be-readonly": "error",
   "@d0whc3r/stencil/render-returns-host": "error",
+  "@d0whc3r/stencil/required-jsdoc": "error",
   "@d0whc3r/stencil/reserved-member-names": "error",
   "@d0whc3r/stencil/single-export": "error"
 }
