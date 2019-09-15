@@ -59,6 +59,10 @@ This rule catches Stencil method hostData.
 
 This rule catches Stencil Methods marked as private or protected.
 
+- [`@d0whc3r/stencil/no-unused-watch`](./docs/no-unused-watch.md)
+
+This rule catches Stencil Watchs with non existing Props or States.
+
 - [`@d0whc3r/stencil/prefer-vdom-listener`](./docs/prefer-vdom-listener.md)
 
 This rule catches Stencil Listen with vdom events.
@@ -111,6 +115,7 @@ This rule catches modules that expose more than just the Stencil Component itsel
   "@d0whc3r/stencil/element-type": "error",
   "@d0whc3r/stencil/host-data-deprecated": "error",
   "@d0whc3r/stencil/methods-must-be-public": "error",
+  "@d0whc3r/stencil/no-unused-watch": "error",
   "@d0whc3r/stencil/prefer-vdom-listener": "error",
   "@d0whc3r/stencil/props-must-be-public": "error",
   "@d0whc3r/stencil/props-must-be-readonly": "error",

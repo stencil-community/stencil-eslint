@@ -6,6 +6,7 @@ import decoratorsStyle from './decorators-style';
 import elementType from './element-type';
 import hostDataDeprecated from './host-data-deprecated';
 import methodsMustBePublic from './methods-must-be-public';
+import noUnusedWatch from './no-unused-watch';
 import preferVdomListener from './prefer-vdom-listener';
 import propsMustBePublic from './props-must-be-public';
 import propsMustBeReadonly from './props-must-be-readonly';
@@ -24,6 +25,7 @@ export default {
   'element-type': elementType,
   'host-data-deprecated': hostDataDeprecated,
   'methods-must-be-public': methodsMustBePublic,
+  'no-unused-watch': noUnusedWatch,
   'prefer-vdom-listener': preferVdomListener,
   'props-must-be-public': propsMustBePublic,
   'props-must-be-readonly': propsMustBeReadonly,
