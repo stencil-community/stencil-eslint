@@ -78,7 +78,7 @@ const rule: Rule.RuleModule = {
           const text = originalNode.getFullText();
           const parsed = parseDecorator(varNode);
           context.report({
-            node: varNode.key,
+            node: varNode,
             message: `@Prop() "${varName}" should not be mutable`,
             fix(fixer) {
               const options = parsed && parsed.length && parsed[0] || {};

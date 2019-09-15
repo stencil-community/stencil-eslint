@@ -16,8 +16,7 @@ const rule: Rule.RuleModule = {
             type: 'string'
           },
           ignoreCase: {
-            type: 'boolean',
-            required: false
+            type: 'boolean'
           }
         },
         additionalProperties: false
