@@ -53,3 +53,8 @@ export function stencilComponentContext() {
     }
   };
 }
+
+export function getType(originalNode: ts.Node) {
+  const type = originalNode.getText().split(':')[1];
+  return type && type.trim().replace(';', '');
+}
