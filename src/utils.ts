@@ -54,7 +54,6 @@ export function stencilComponentContext() {
   };
 }
 
-export function getType(originalNode: ts.Node) {
-  const type = originalNode.getText().split(':')[1];
-  return type && type.trim().replace(';', '');
+export function getType(node: any) {
+  return node.typeAnnotation.typeAnnotation.typeName.name
 }

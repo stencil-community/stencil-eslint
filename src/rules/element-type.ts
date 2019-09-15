@@ -25,14 +25,12 @@ const rule: Rule.RuleModule = {
       return result;
     }
 
-    const parserServices = context.parserServices;
     return {
       ...stencil.rules,
-      'ClassProperty': (node: any) => {
-        if (stencil.isComponent() && getDecorator(node, 'Element')) {
-          const originalNode = parserServices.esTreeNodeToTSNodeMap.get(node) as ts.Node;
-          const tagType = getType(originalNode);
-          const component = getDecorator(node.parent.parent, 'Component');
+      'ClassProperty > Decorator[expression.callee.name=Element]': (node: any) => {
+        if (stencil.isComponent()) {
+          const tagType = getType(node.parent);
+          const component = getDecorator(node.parent.parent.parent, 'Component');
           const [{ tag }] = parseDecorator(component);
           const parsedTag = `HTML${parseTag(tag)}Element`;
           if (tagType !== parsedTag) {
