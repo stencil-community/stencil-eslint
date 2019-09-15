@@ -103,6 +103,10 @@ This rule catches Stencil Prop names that share names of Global HTML Attributes.
 
 This rule catches modules that expose more than just the Stencil Component itself.
 
+- [`@d0whc3r/stencil/strict-mutable`](./docs/strict-mutable.md)
+
+This rule catches Stencil Prop marked as mutable but not changing value in code.
+
 ## Recommended rules
 
 ```json
@@ -132,7 +136,8 @@ This rule catches modules that expose more than just the Stencil Component itsel
   "@d0whc3r/stencil/render-returns-host": "error",
   "@d0whc3r/stencil/required-jsdoc": "error",
   "@d0whc3r/stencil/reserved-member-names": "error",
-  "@d0whc3r/stencil/single-export": "error"
+  "@d0whc3r/stencil/single-export": "error",
+  "@d0whc3r/stencil/strict-mutable": "error"
 }
 ```
 

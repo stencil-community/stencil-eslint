@@ -17,6 +17,7 @@ import requiredJsdoc from './required-jsdoc';
 import requiredPrefix from './required-prefix';
 import reservedMemberNames from './reserved-member-names';
 import singleExport from './single-export';
+import strictMutable from './strict-mutable';
 
 export default {
   'async-methods': asyncMethods,
@@ -37,5 +38,6 @@ export default {
   'required-jsdoc': requiredJsdoc,
   'required-prefix': requiredPrefix,
   'reserved-member-names': reservedMemberNames,
-  'single-export': singleExport
+  'single-export': singleExport,
+  'strict-mutable': strictMutable
 };

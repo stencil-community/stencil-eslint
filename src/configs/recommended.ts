@@ -36,7 +36,8 @@ export default {
         '@d0whc3r/stencil/render-returns-host': 'error',
         '@d0whc3r/stencil/required-jsdoc': 'error',
         '@d0whc3r/stencil/reserved-member-names': 'error',
-        '@d0whc3r/stencil/single-export': 'error'
+        '@d0whc3r/stencil/single-export': 'error',
+        '@d0whc3r/stencil/strict-mutable': 'error'
       },
       plugins: [
         '@d0whc3r/stencil'
