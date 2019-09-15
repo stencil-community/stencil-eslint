@@ -11,7 +11,8 @@ const rule: Rule.RuleModule = {
     schema: [
       {
         type: 'array',
-        minLength: 1
+        minLength: 1,
+        additionalProperties: false
       }
     ],
     type: 'layout'

@@ -16,10 +16,11 @@ const rule: Rule.RuleModule = {
         items: {
           type: 'string'
         },
-        minLength: 1
+        minLength: 1,
+        additionalProperties: false
       }
     ],
-    type: 'layout'
+    type: 'problem'
   },
 
   create(context): Rule.RuleListener {

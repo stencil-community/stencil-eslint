@@ -9,7 +9,8 @@ const rule: Rule.RuleModule = {
       category: 'Possible Errors',
       recommended: true
     },
-    schema: []
+    schema: [],
+    type: 'problem'
   },
 
   create(context): Rule.RuleListener {

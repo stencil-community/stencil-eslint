@@ -65,7 +65,8 @@ const rule: Rule.RuleModule = {
           }
         }
       }],
-    fixable: 'code'
+    fixable: 'code',
+    type: 'layout'
   },
 
   create(context): Rule.RuleListener {
