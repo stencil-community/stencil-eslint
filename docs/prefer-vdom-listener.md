@@ -9,5 +9,5 @@ No config is needed
 ## Usage
 
 ```json
-{ "@d0whc3r/stencil/prefer-vdom-listener": "error" }
+{ "@stencil/prefer-vdom-listener": "error" }
 ```

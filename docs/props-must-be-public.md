@@ -9,7 +9,7 @@ No config is needed
 ## Usage
 
 ```json
-{ "@d0whc3r/stencil/props-must-be-public": "error" }
+{ "@stencil/props-must-be-public": "error" }
 ```
 
 > Fix included

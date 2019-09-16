@@ -9,7 +9,7 @@ No config is needed
 ## Usage
 
 ```json
-{ "@d0whc3r/stencil/async-methods": "error" }
+{ "@stencil/async-methods": "error" }
 ```
 
 > Fix included
