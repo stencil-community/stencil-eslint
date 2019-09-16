@@ -10,7 +10,8 @@ const rule: Rule.RuleModule = {
       recommended: true
     },
     schema: [],
-    type: 'problem'
+    type: 'problem',
+    fixable: 'code'
   },
 
   create(context): Rule.RuleListener {
