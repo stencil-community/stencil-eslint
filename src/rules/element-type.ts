@@ -15,6 +15,7 @@ const rule: Rule.RuleModule = {
 
   create(context): Rule.RuleListener {
     const stencil = stencilComponentContext();
+    const parserServices = context.parserServices;
 
     function parseTag(tag: string) {
       let result = tag[0].toUpperCase() + tag.slice(1);
@@ -34,9 +35,16 @@ const rule: Rule.RuleModule = {
           const [{ tag }] = parseDecorator(component);
           const parsedTag = `HTML${parseTag(tag)}Element`;
           if (tagType !== parsedTag) {
+            const originalNode = parserServices.esTreeNodeToTSNodeMap.get(node.parent);
+            const text = originalNode.getFullText();
+            const type = originalNode.type.typeName.escapedText;
             context.report({
-              node: node,
-              message: `@Element type is not matching tag for component (${parsedTag})`
+              node: node.parent,
+              message: `@Element type is not matching tag for component (${parsedTag})`,
+              fix(fixer) {
+                const result = text.replace(`: ${type}`, `: ${parsedTag}`);
+                return fixer.replaceText(node, result);
+              }
             });
           }
         }
