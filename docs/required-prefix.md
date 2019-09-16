@@ -9,7 +9,7 @@ An array of `"string"`s which Component `tag` will be use as a prefix.
 ### Config examples
 
 ```json
-{ "required-prefix": ["error", ["app"]] }
+{ "@d0whc3r/stencil/required-prefix": ["error", ["app"]] }
 ```
 
 ## Schema
