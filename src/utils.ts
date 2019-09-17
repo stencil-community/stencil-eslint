@@ -5,15 +5,18 @@ import { getStaticValue } from 'eslint-utils';
 export function isPrivate(originalNode: ts.Node) {
   if (originalNode.modifiers) {
     return originalNode.modifiers.some(m => (
-        m.kind === ts.SyntaxKind.PrivateKeyword ||
-        m.kind === ts.SyntaxKind.ProtectedKeyword
+      m.kind === ts.SyntaxKind.PrivateKeyword ||
+      m.kind === ts.SyntaxKind.ProtectedKeyword
     ));
   }
   return false;
 }
 
-export function getDecorator(node: any, decoratorName: string) {
-  return node.decorators && node.decorators.find(isDecoratorNamed(decoratorName));
+export function getDecorator(node: any, decoratorName?: string): any | any[] {
+  if (decoratorName) {
+    return node.decorators && node.decorators.find(isDecoratorNamed(decoratorName));
+  }
+  return node.decorators ? node.decorators.filter((dec: any) => dec.expression) : [];
 }
 
 export function parseDecorator(decorator: any) {
@@ -26,9 +29,13 @@ export function parseDecorator(decorator: any) {
   return [];
 }
 
+export function decoratorName(dec: any): string {
+  return dec.expression && dec.expression.callee.name;
+}
+
 export function isDecoratorNamed(propName: string) {
   return (dec: any): boolean => {
-    return (dec.expression && dec.expression.callee.name === propName);
+    return decoratorName(dec) === propName;
   };
 }
 
