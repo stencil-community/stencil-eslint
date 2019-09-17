@@ -6,11 +6,14 @@ export class SampleTag {
   @Prop({ mutable: false }) readonly testNotMutable?: boolean;
   @Prop({ mutable: true }) mutableInJsx?: boolean;
   @Prop({ mutable: true }) mutableInJsx2?: boolean;
+  @Prop({ mutable: true }) testMutableReturn?: boolean;
 
   private internalMethod() {
     const test = 'hi';
-    this.testMutable = 'other value';
-    return 'ok';
+    if (!this.testNotMutable) {
+      this.testMutable = 'other value';
+    }
+    return this.testMutableReturn = true;
   }
 
   private onClick(e: Event) {
@@ -23,7 +26,21 @@ export class SampleTag {
   }
 
   render() {
-    this.mutableInJsx2 = false;
-    return (<div onClick={(e) => this.mutableInJsx = true}>test</div>);
+    return (
+      <div class="odp-button-selector" onClick={(e) => this.mutableInJsx = true}>
+        {this.values.map((value, index) => {
+          return (
+            <div
+              onClick={() => (this.mutableInJsx2 = index)}
+              class={{
+                'odp-button-selector-label': true,
+                selected: index === this.selected
+              }}>
+              <span>{value}</span>
+            </div>
+          );
+        })}
+      </div>
+    );
   }
 }
