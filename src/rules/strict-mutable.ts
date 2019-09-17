@@ -40,13 +40,16 @@ const rule: Rule.RuleModule = {
     }
 
     function parseExpression(expression: any): any {
+      if (!expression) {
+        return null;
+      }
       if (expression.expression) {
         return parseExpression(expression.expression);
       }
       if (expression.openingElement) {
         return expression.openingElement.attributes &&
-        expression.openingElement.attributes.nextContainer &&
-        parseExpression(expression.openingElement.attributes.nextContainer.body)
+          expression.openingElement.attributes.nextContainer &&
+          parseExpression(expression.openingElement.attributes.nextContainer.body);
       }
       return expression && getName(expression);
     }
