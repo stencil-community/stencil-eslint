@@ -39,26 +39,37 @@ const rule: Rule.RuleModule = {
       return null;
     }
 
+    function parseExpression(expression: any): any {
+      if (expression.expression) {
+        return parseExpression(expression.expression);
+      }
+      if (expression.openingElement) {
+        return expression.openingElement.attributes &&
+        expression.openingElement.attributes.nextContainer &&
+        parseExpression(expression.openingElement.attributes.nextContainer.body)
+      }
+      return expression && getName(expression);
+    }
+
     function removeUsedVars(statements: any[]) {
       statements
-          .filter((st) => st.expression)
-          .map((st) => getName(st.expression))
-          .filter((name) => !!name)
-          .forEach((name) => {
-            mutableProps.delete(name.escapedText);
-          });
+        .map((st) => st.expression && parseExpression(st.expression))
+        .filter((name) => !!name)
+        .forEach((name) => {
+          mutableProps.delete(name.escapedText);
+        });
       statements
-          .filter((st) => st.thenStatement && st.thenStatement.statements)
-          .map((st) => st.thenStatement.statements)
-          .forEach((st) => {
-            removeUsedVars(st);
-          });
+        .filter((st) => st.thenStatement && st.thenStatement.statements)
+        .map((st) => st.thenStatement.statements)
+        .forEach((st) => {
+          removeUsedVars(st);
+        });
       statements
-          .filter((st) => st.elseStatement)
-          .forEach((st) => {
-            const sts = Array.isArray(st.elseStatement) ? st.elseStatement : [st.elseStatement];
-            removeUsedVars(sts);
-          });
+        .filter((st) => st.elseStatement)
+        .forEach((st) => {
+          const sts = Array.isArray(st.elseStatement) ? st.elseStatement : [st.elseStatement];
+          removeUsedVars(sts);
+        });
     }
 
     return {
