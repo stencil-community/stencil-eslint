@@ -24,6 +24,7 @@ An array of `"string"`s which no Component `tag` will be allowed to use as a pre
   "items": {
     "type": "string"
   },
-  "minLength": 1
+  "minLength": 1,
+  "additionalProperties": false
 }
 ```

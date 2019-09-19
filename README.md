@@ -12,7 +12,7 @@ npm i eslint @typescript-eslint/parser @stencil/eslint-plugin --save-dev
 
 ## Usage
 
-Add `stencil` to the plugins section of your `.eslintrc.json` configuration file:
+`.eslintrc.json` configuration file:
 
 ```json
 {
@@ -35,6 +35,10 @@ This rule catches Stencil public methods that are not async.
 
 This rule catches Stencil Component banned tag name prefix.
 
+- [`@stencil/class-pattern`](./docs/class-pattern.md)
+
+This rule catches Stencil Component class name not matching configurable pattern.
+
 - [`@stencil/decorators-context`](./docs/decorators-context.md)
 
 This rule catches Stencil decorators in bad locations.
@@ -43,6 +47,10 @@ This rule catches Stencil decorators in bad locations.
 
 This rule catches Stencil decorators style usage.
 
+- [`@stencil/element-type`](./docs/element-type.md)
+
+This rule catches Stencil Element decorator have the correct type.
+
 - [`@stencil/host-data-deprecated`](./docs/host-data-deprecated.md)
 
 This rule catches Stencil method hostData.
@@ -50,6 +58,18 @@ This rule catches Stencil method hostData.
 - [`@stencil/methods-must-be-public`](./docs/methods-must-be-public.md)
 
 This rule catches Stencil Methods marked as private or protected.
+
+- [`@stencil/no-unused-watch`](./docs/no-unused-watch.md)
+
+This rule catches Stencil Watchs with non existing Props or States.
+
+- [`@stencil/own-methods-must-be-private`](./docs/own-methods-must-be-private.md)
+
+This rule catches own class methods marked as public.
+
+- [`@stencil/own-props-must-be-private`](./docs/own-props-must-be-private.md)
+
+This rule catches own class properties marked as public.
 
 - [`@stencil/prefer-vdom-listener`](./docs/prefer-vdom-listener.md)
 
@@ -67,6 +87,10 @@ This rule catches Stencil Props marked as non readonly, excluding mutable ones.
 
 This rule catches Stencil Render returning array instead of Host tag.
 
+- [`@stencil/required-jsdoc`](./docs/required-jsdoc.md)
+
+This rule catches Stencil Props, Methods and Events to define jsdoc.
+
 - [`@stencil/required-prefix`](./docs/required-prefix.md)
 
 This rule catches Stencil Component required tag name prefix.
@@ -79,12 +103,16 @@ This rule catches Stencil Prop names that share names of Global HTML Attributes.
 
 This rule catches modules that expose more than just the Stencil Component itself.
 
+- [`@stencil/strict-mutable`](./docs/strict-mutable.md)
+
+This rule catches Stencil Prop marked as mutable but not changing value in code.
+
 ## Recommended rules
 
 ```json
 {
   "@stencil/async-methods": "error",
-  "@stencil/ban-prefix": ["error", ["stencil", "st", "stnl"]],
+  "@stencil/ban-prefix": ["error", ["stencil", "stnl", "st"]],
   "@stencil/decorators-context": "error",
   "@stencil/decorators-style": [
     "error", {
@@ -96,14 +124,20 @@ This rule catches modules that expose more than just the Stencil Component itsel
       "watch": "multiline",
       "listen": "multiline"
     }],
+  "@stencil/element-type": "error",
   "@stencil/host-data-deprecated": "error",
   "@stencil/methods-must-be-public": "error",
+  "@stencil/no-unused-watch": "error",
+  "@stencil/own-methods-must-be-private": "error",
+  "@stencil/own-props-must-be-private": "error",
   "@stencil/prefer-vdom-listener": "error",
   "@stencil/props-must-be-public": "error",
   "@stencil/props-must-be-readonly": "error",
   "@stencil/render-returns-host": "error",
+  "@stencil/required-jsdoc": "error",
   "@stencil/reserved-member-names": "error",
-  "@stencil/single-export": "error"
+  "@stencil/single-export": "error",
+  "@stencil/strict-mutable": "error"
 }
 ```
 

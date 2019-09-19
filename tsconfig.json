@@ -6,6 +6,7 @@
     "declaration": true,
     "declarationMap": true,
     "esModuleInterop": true,
+    "experimentalDecorators": true,
     "module": "commonjs",
     "moduleResolution": "node",
     "strict": true,

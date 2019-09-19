@@ -1,6 +1,7 @@
 import { Rule } from 'eslint';
 import ts from 'typescript';
-import { getDecorator, stencilComponentContext } from '../utils';
+import { decoratorName, getDecorator, stencilComponentContext, stencilDecorators } from '../utils';
+import * as os from 'os';
 
 type DecoratorsStyleOptionsEnum = 'inline' | 'multiline' | 'ignore';
 
@@ -16,13 +17,13 @@ interface DecoratorsStyleOptions {
 
 const ENUMERATE = ['inline', 'multiline', 'ignore'];
 const DEFAULTS: DecoratorsStyleOptions = {
-  prop: 'inline',
-  state: 'inline',
-  element: 'inline',
-  event: 'inline',
-  method: 'multiline',
-  watch: 'multiline',
-  listen: 'multiline'
+  prop: 'ignore',
+  state: 'ignore',
+  element: 'ignore',
+  event: 'ignore',
+  method: 'ignore',
+  watch: 'ignore',
+  listen: 'ignore'
 };
 const rule: Rule.RuleModule = {
   meta: {
@@ -65,7 +66,8 @@ const rule: Rule.RuleModule = {
           }
         }
       }],
-    fixable: 'code'
+    fixable: 'code',
+    type: 'layout'
   },
 
   create(context): Rule.RuleListener {
@@ -75,49 +77,47 @@ const rule: Rule.RuleModule = {
     const opts = context.options[0] || {};
     const options = { ...DEFAULTS, ...opts };
 
-    function getDefinitions() {
-      return (node: any) => {
-        if (!stencil.isComponent() || !options || !Object.keys(options).length) {
-          return;
-        }
-
-        Object.keys(options).forEach((optDec) => {
-          const decName = optDec[0].toUpperCase() + optDec.slice(1);
-          const config: DecoratorsStyleOptionsEnum = options[optDec];
-          if (getDecorator(node, decName) && config && config !== 'ignore') {
-            const originalNode = parserServices.esTreeNodeToTSNodeMap.get(node) as ts.Node;
-            const nodeIndex = node.decorators.findIndex(
-                (dec: any) => dec.expression.callee.name.toLowerCase() === optDec);
-            const nodeDec = originalNode.decorators![nodeIndex];
-            const decoratorBase = nodeDec.getText();
-            const text = String(originalNode.getText());
-            const decorator = decoratorBase
-                .replace('(', '\\(')
-                .replace(')', '\\)');
-            const separator = config === 'multiline' ? '\\n' : ' ';
-            const regExp = new RegExp(`${decorator}([${separator}]+)`, 'i');
-            if (!regExp.test(text)) {
-              context.report({
-                node: node,
-                message: `The @${decName} decorator can only be applied as ${config}.`,
-                fix(fixer) {
-                  const opposite = config === 'multiline' ? ' ' : '\\n';
-                  const separatorChar = config === 'multiline' ? '\n' : ' ';
-                  const matchRegExp = new RegExp(`(${decorator})([${opposite}]+)`, 'i');
-                  const result = text.replace(matchRegExp, `$1${separatorChar}`);
-                  return fixer.replaceText(node, result);
-                }
-              });
-            }
+    function checkStyle(decorator: any) {
+      const decName = decoratorName(decorator);
+      const config = options[decName.toLowerCase()];
+      if (!config || config === 'ignore') {
+        return;
+      }
+      const decoratorNode = parserServices.esTreeNodeToTSNodeMap.get(decorator) as ts.Node;
+      const decoratorText = decoratorNode.getText()
+        .replace('(', '\\(')
+        .replace(')', '\\)');
+      const text = decoratorNode.parent.getText();
+      const separator = config === 'multiline' ? '\\r?\\n' : ' ';
+      const regExp = new RegExp(`${decoratorText}${separator}`, 'i');
+      if (!regExp.test(text)) {
+        const node = decorator.parent;
+        context.report({
+          node: node,
+          message: `The @${decName} decorator can only be applied as ${config}.`,
+          fix(fixer) {
+            const opposite = config === 'multiline' ? ' ' : '\\r?\\n';
+            const separatorChar = config === 'multiline' ? os.EOL : ' ';
+            const matchRegExp = new RegExp(`(${decoratorText})([${opposite}]+)`, 'i');
+            const result = text.replace(matchRegExp, `$1${separatorChar}`);
+            return fixer.replaceText(node, result);
           }
         });
-      };
+      }
+    }
+
+    function getStyle(node: any) {
+      if (!stencil.isComponent() || !options || !Object.keys(options).length) {
+        return;
+      }
+      const decorators: any[] = getDecorator(node);
+      decorators.filter((dec) => stencilDecorators.includes(decoratorName(dec))).forEach(checkStyle);
     }
 
     return {
       ...stencil.rules,
-      'ClassProperty': getDefinitions(),
-      'MethodDefinition': getDefinitions()
+      'ClassProperty': getStyle,
+      'MethodDefinition': getStyle
     };
   }
 };

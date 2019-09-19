@@ -16,10 +16,11 @@ const rule: Rule.RuleModule = {
         items: {
           type: 'string'
         },
-        minLength: 1
+        minLength: 1,
+        additionalProperties: false
       }
     ],
-    type: 'layout'
+    type: 'problem'
   },
 
   create(context): Rule.RuleListener {
@@ -39,7 +40,7 @@ const rule: Rule.RuleModule = {
         if (match) {
           context.report({
             node: node,
-            message: `The component with tagName ${tag} have a banned prefix.`
+            message: `The component with tag name ${tag} have a banned prefix.`
           });
         }
       }

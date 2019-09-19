@@ -11,7 +11,7 @@ export class SampleTag {
     return 'method';
   }
 
-  @Listen('eventSuccess') @Watch('test')
+  @Listen('eventSuccess') @Watch('test') @Watch('test2')
   watchForTest() {
     console.log('watch', this.test);
   }

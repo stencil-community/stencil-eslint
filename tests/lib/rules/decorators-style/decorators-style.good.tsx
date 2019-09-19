@@ -12,6 +12,9 @@ export class SampleTag {
 
   @Listen('eventSuccess')
   @Watch('test')
+  @Watch('test2')
+  @Watch('test3')
+  @Watch('test4')
   watchForTest() {
     console.log('watch', this.test);
   }
