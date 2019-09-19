@@ -1,8 +1,23 @@
 import { Rule } from 'eslint';
+import ts from 'typescript';
 import { parseDecorator, stencilComponentContext } from '../utils';
 
 const mutableProps = new Map<string, any>();
-
+const ASSIGN_TOKENS = [
+  ts.SyntaxKind.EqualsToken,
+  ts.SyntaxKind.PlusEqualsToken,
+  ts.SyntaxKind.MinusEqualsToken,
+  ts.SyntaxKind.AsteriskEqualsToken,
+  ts.SyntaxKind.AsteriskAsteriskEqualsToken,
+  ts.SyntaxKind.SlashEqualsToken,
+  ts.SyntaxKind.PercentEqualsToken,
+  ts.SyntaxKind.LessThanLessThanEqualsToken,
+  ts.SyntaxKind.GreaterThanGreaterThanEqualsToken,
+  ts.SyntaxKind.GreaterThanGreaterThanGreaterThanEqualsToken,
+  ts.SyntaxKind.AmpersandEqualsToken,
+  ts.SyntaxKind.BarEqualsToken,
+  ts.SyntaxKind.CaretEqualsToken
+];
 const rule: Rule.RuleModule = {
   meta: {
     docs: {
@@ -23,56 +38,53 @@ const rule: Rule.RuleModule = {
       if (!stencil.isComponent()) {
         return;
       }
-      const originalNode = parserServices.esTreeNodeToTSNodeMap.get(node);
       const parsed = parseDecorator(node);
       const mutable = parsed && parsed.length && parsed[0].mutable || false;
       if (mutable) {
-        const varName = originalNode.parent.name.escapedText;
+        const varName = node.parent.key.name;
         mutableProps.set(varName, node);
       }
     }
 
-    function getName(expression: any) {
-      if (expression.left && expression.left.name) {
-        return expression.left.name;
+    function removeVar(name: any) {
+      if (!name) {
+        return;
       }
-      return null;
+      if (name.escapedText) {
+        mutableProps.delete(name.escapedText);
+      }
     }
 
-    function parseExpression(expression: any): any {
-      if (!expression) {
-        return null;
+    function getArray(value: any | any[]): any[] {
+      if (!value) {
+        return [];
       }
-      if (expression.expression) {
-        return parseExpression(expression.expression);
-      }
-      if (expression.openingElement) {
-        return expression.openingElement.attributes &&
-          expression.openingElement.attributes.nextContainer &&
-          parseExpression(expression.openingElement.attributes.nextContainer.body);
-      }
-      return expression && getName(expression);
+      return Array.isArray(value) ? value : [value];
     }
 
-    function removeUsedVars(statements: any[]) {
-      statements
-        .map((st) => st.expression && parseExpression(st.expression))
-        .filter((name) => !!name)
-        .forEach((name) => {
-          mutableProps.delete(name.escapedText);
-        });
-      statements
-        .filter((st) => st.thenStatement && st.thenStatement.statements)
-        .map((st) => st.thenStatement.statements)
-        .forEach((st) => {
-          removeUsedVars(st);
-        });
-      statements
-        .filter((st) => st.elseStatement)
-        .forEach((st) => {
-          const sts = Array.isArray(st.elseStatement) ? st.elseStatement : [st.elseStatement];
-          removeUsedVars(sts);
-        });
+    function checkStatement(st: any) {
+      if (!st) {
+        return;
+      }
+      const { expression, thenStatement, elseStatement } = st;
+      [...getArray(thenStatement), ...getArray(elseStatement), expression].filter((ex) => !!ex).forEach(checkExpression);
+    }
+
+    function checkExpression(expr: any) {
+      if (!expr) {
+        return;
+      }
+      const { expression, left, openingElement, body, nextContainer, statements, thenStatement } = expr;
+      if (left && left.name && expr.operatorToken && ASSIGN_TOKENS.includes(expr.operatorToken.kind)) {
+        removeVar(left.name);
+      }
+      if (openingElement) {
+        getArray(openingElement.attributes).forEach(checkExpression);
+      }
+      [...getArray(thenStatement), expression, body, nextContainer].filter((ex) => !!ex).forEach(checkExpression);
+      if (statements) {
+        statements.forEach(checkStatement);
+      }
     }
 
     return {
@@ -85,7 +97,9 @@ const rule: Rule.RuleModule = {
         const originalNode = parserServices.esTreeNodeToTSNodeMap.get(node);
         const statements = originalNode.body.statements;
         if (statements && statements.length) {
-          removeUsedVars(statements);
+          statements.forEach((st: any) => {
+            checkStatement(st);
+          });
         }
       },
       'ClassDeclaration:exit': (node: any) => {
@@ -94,11 +108,11 @@ const rule: Rule.RuleModule = {
         }
         stencil.rules['ClassDeclaration:exit'](node);
         mutableProps.forEach((varNode, varName) => {
-          const originalNode = parserServices.esTreeNodeToTSNodeMap.get(varNode);
+          const originalNode = parserServices.esTreeNodeToTSNodeMap.get(varNode.parent);
           const text = originalNode.getFullText();
           const parsed = parseDecorator(varNode);
           context.report({
-            node: varNode,
+            node: varNode.parent,
             message: `@Prop() "${varName}" should not be mutable`,
             fix(fixer) {
               const options = parsed && parsed.length && parsed[0] || {};
