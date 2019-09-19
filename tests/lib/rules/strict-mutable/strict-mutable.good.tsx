@@ -27,13 +27,13 @@ export class SampleTag {
 
   render() {
     return (
-      <div class="odp-button-selector" onClick={(e) => this.mutableInJsx = true}>
+      <div class="class" onClick={(e) => this.mutableInJsx = true}>
         {this.values.map((value, index) => {
           return (
             <div
               onClick={() => (this.mutableInJsx2 = index)}
               class={{
-                'odp-button-selector-label': true,
+                'label': true,
                 selected: index === this.selected
               }}>
               <span>{value}</span>

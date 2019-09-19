@@ -22,7 +22,7 @@ export function getDecorator(node: any, decoratorName?: string): any | any[] {
 }
 
 export function parseDecorator(decorator: any) {
-  if (decorator && decorator.expression.type === 'CallExpression') {
+  if (decorator && decorator.expression && decorator.expression.type === 'CallExpression') {
     return decorator.expression.arguments.map((a: any) => {
       const parsed = getStaticValue(a);
       return parsed ? parsed.value : undefined;
