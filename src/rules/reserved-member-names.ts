@@ -13,11 +13,12 @@ import { stencilComponentContext } from '../utils';
 const rule: Rule.RuleModule = {
   meta: {
     docs: {
-      description: "This rule catches Stencil Prop names that share names of Global HTML Attributes.",
-      category: "Possible Errors",
+      description: 'This rule catches Stencil Prop names that share names of Global HTML Attributes.',
+      category: 'Possible Errors',
       recommended: true
     },
-    schema: []
+    schema: [],
+    type: 'problem'
   },
 
   create(context): Rule.RuleListener {
@@ -28,33 +29,33 @@ const rule: Rule.RuleModule = {
     const stencil = stencilComponentContext();
 
     const checkName = (node: any) => {
-      if (stencil.isComponent()) {
-        const decoratorName = node.expression.callee.name;
-        if (decoratorName ===  'Prop' || decoratorName === 'Method') {
-          const propName = node.parent.key.name;
-          if (isReservedMember(propName)) {
-            context.report({
-              node: node.parent.key,
-              message: `The @${decoratorName} name "${propName} conflicts with a key in the HTMLElement prototype. Please choose a different name.`
-            });
-          }
-          if (propName.startsWith('data-')) {
-            context.report({
-              node: node.parent.key,
-              message: "Avoid using Global HTML Attributes as Prop names."
-            });
-          }
+      if (!stencil.isComponent()) {
+        return;
+      }
+      const decoratorName = node.expression.callee.name;
+      if (decoratorName === 'Prop' || decoratorName === 'Method') {
+        const propName = node.parent.key.name;
+        if (isReservedMember(propName)) {
+          context.report({
+            node: node.parent.key,
+            message: `The @${decoratorName} name "${propName} conflicts with a key in the HTMLElement prototype. Please choose a different name.`
+          });
+        }
+        if (propName.startsWith('data-')) {
+          context.report({
+            node: node.parent.key,
+            message: 'Avoid using Global HTML Attributes as Prop names.'
+          });
         }
       }
-    }
+    };
     return {
       ...stencil.rules,
       'ClassProperty > Decorator[expression.callee.name=Prop]': checkName,
-      'MethodDefinition > Decorator[expression.callee.name=Method]': checkName,
+      'MethodDefinition > Decorator[expression.callee.name=Method]': checkName
     };
   }
 };
-
 
 const HTML_ELEMENT_KEYS = [
   'title',
@@ -311,9 +312,8 @@ const RESERVED_PUBLIC_MEMBERS = new Set([
   ...HTML_ELEMENT_KEYS,
   ...ELEMENT_KEYS,
   ...NODE_KEYS,
-  ...JSX_KEYS,
+  ...JSX_KEYS
 ].map(p => p.toLowerCase()));
-
 
 function isReservedMember(memberName: string) {
   memberName = memberName.toLowerCase();

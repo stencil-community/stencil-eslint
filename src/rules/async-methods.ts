@@ -1,37 +1,49 @@
 import { Rule } from 'eslint';
 import ts from 'typescript';
-import { getDecorator } from '../utils';
+import { stencilComponentContext } from '../utils';
 import * as tsutils from 'tsutils';
 
 const rule: Rule.RuleModule = {
   meta: {
     docs: {
-      description: "This rule catches Stencil public methods that are not async.",
-      category: "Possible Errors",
+      description: 'This rule catches Stencil public methods that are not async.',
+      category: 'Possible Errors',
       recommended: true
     },
-    schema: []
+    schema: [],
+    type: 'problem',
+    fixable: 'code'
   },
 
   create(context): Rule.RuleListener {
-
-    //----------------------------------------------------------------------
-    // Public
-    //----------------------------------------------------------------------
+    const stencil = stencilComponentContext();
     const parserServices = context.parserServices;
     const typeChecker = parserServices.program.getTypeChecker() as ts.TypeChecker;
+
     return {
-      'MethodDefinition': (node: any) => {
-        if (getDecorator(node, 'Method')) {
-          const method = parserServices.esTreeNodeToTSNodeMap.get(node);
-          const signature = typeChecker.getSignatureFromDeclaration(method);
-          const returnType = typeChecker.getReturnTypeOfSignature(signature!);
-          if (!tsutils.isThenableType(typeChecker, method, returnType)) {
-            context.report({
-              node: node.key,
-              message: `External @Method() ${node.key.name}() must return a Promise. Consider prefixing the method with async, such as @Method async ${node.key.name}().`
-            });
-          }
+      ...stencil.rules,
+      'MethodDefinition > Decorator[expression.callee.name=Method]': (decoratorNode: any) => {
+        if (!stencil.isComponent()) {
+          return;
+        }
+        const node = decoratorNode.parent;
+        const method = parserServices.esTreeNodeToTSNodeMap.get(node);
+        const signature = typeChecker.getSignatureFromDeclaration(method);
+        const returnType = typeChecker.getReturnTypeOfSignature(signature!);
+        if (!tsutils.isThenableType(typeChecker, method, returnType)) {
+          const originalNode = parserServices.esTreeNodeToTSNodeMap.get(node) as ts.Node;
+          const text = String(originalNode.getFullText());
+          context.report({
+            node: node.key,
+            message: `External @Method() ${node.key.name}() must return a Promise. Consider prefixing the method with async, such as @Method() async ${node.key.name}().`,
+            fix(fixer) {
+              const result = text.replace('@Method()\n', '@Method()\nasync')
+                  .replace('@Method() ', '@Method() async')
+                  .replace('async public', 'public async')
+                  .replace('async private', 'private async');
+              return fixer.replaceText(node, result);
+            }
+          });
         }
       }
     };

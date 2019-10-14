@@ -9,16 +9,16 @@
 import ts from 'typescript';
 import { Rule } from 'eslint';
 import { stencilComponentContext } from '../utils';
-import { type } from 'os';
 
 const rule: Rule.RuleModule = {
   meta: {
     docs: {
-      description: "This rule catches Stencil Prop names that share names of Global HTML Attributes.",
-      category: "Possible Errors",
+      description: 'This rule catches Stencil Prop names that share names of Global HTML Attributes.',
+      category: 'Possible Errors',
       recommended: true
     },
-    schema: []
+    schema: [],
+    type: 'problem'
   },
 
   create(context): Rule.RuleListener {
@@ -34,21 +34,20 @@ const rule: Rule.RuleModule = {
     return {
       ...stencil.rules,
       'MethodDefinition[key.name=render] ReturnStatement': (node: any) => {
-        if (stencil.isComponent()) {
-          const originalNode = parserServices.esTreeNodeToTSNodeMap.get(node.argument) as ts.MethodDeclaration;
-          const type = typeChecker.getTypeAtLocation(originalNode);
-          if (type && type.symbol && type.symbol.escapedName === 'Array') {
-            context.report({
-              node: node,
-              message: `Avoid returning an array in the render() function, use <Host> instead.`
-            });
-          }
+        if (!stencil.isComponent()) {
+          return;
+        }
+        const originalNode = parserServices.esTreeNodeToTSNodeMap.get(node.argument) as ts.MethodDeclaration;
+        const type = typeChecker.getTypeAtLocation(originalNode);
+        if (type && type.symbol && type.symbol.escapedName === 'Array') {
+          context.report({
+            node: node,
+            message: `Avoid returning an array in the render() function, use <Host> instead.`
+          });
         }
       }
     };
   }
 };
-
-
 
 export default rule;

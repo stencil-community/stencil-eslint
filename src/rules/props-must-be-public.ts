@@ -5,11 +5,13 @@ import { getDecorator, isPrivate, stencilComponentContext } from '../utils';
 const rule: Rule.RuleModule = {
   meta: {
     docs: {
-      description: "This rule catches Stencil Props marked as private or protected.",
-      category: "Possible Errors",
+      description: 'This rule catches Stencil Props marked as private or protected.',
+      category: 'Possible Errors',
       recommended: true
     },
-    schema: []
+    schema: [],
+    type: 'problem',
+    fixable: 'code'
   },
 
   create(context): Rule.RuleListener {
@@ -22,9 +24,13 @@ const rule: Rule.RuleModule = {
         if (stencil.isComponent() && getDecorator(node, 'Prop')) {
           const originalNode = parserServices.esTreeNodeToTSNodeMap.get(node) as ts.Node;
           if (isPrivate(originalNode)) {
+            const text = String(originalNode.getFullText());
             context.report({
-              node: node.key,
-              message: `Class properties decorated with @Prop() cannot be private nor protected`
+              node: node,
+              message: `Class properties decorated with @Prop() cannot be private nor protected`,
+              fix(fixer) {
+                return fixer.replaceText(node, text.replace(/(private |protected )/, ''));
+              }
             });
           }
         }

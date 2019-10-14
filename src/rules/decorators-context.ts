@@ -4,11 +4,12 @@ import { stencilComponentContext } from '../utils';
 const rule: Rule.RuleModule = {
   meta: {
     docs: {
-      description: "This rule catches Stencil Decorators used in incorrect locations.",
-      category: "Possible Errors",
+      description: 'This rule catches Stencil Decorators used in incorrect locations.',
+      category: 'Possible Errors',
       recommended: true
     },
-    schema: []
+    schema: [],
+    type: 'problem'
   },
 
   create(context): Rule.RuleListener {
@@ -23,10 +24,10 @@ const rule: Rule.RuleModule = {
         if (node.expression && node.expression.callee) {
           const decName = node.expression.callee.name;
           if (
-            decName === 'Prop' ||
-            decName === 'State' ||
-            decName === 'Element' ||
-            decName === 'Event'
+              decName === 'Prop' ||
+              decName === 'State' ||
+              decName === 'Element' ||
+              decName === 'Event'
           ) {
             if (node.parent.type !== 'ClassProperty') {
               context.report({
@@ -35,9 +36,9 @@ const rule: Rule.RuleModule = {
               });
             }
           } else if (
-            decName === 'Method' ||
-            decName === 'Watch' ||
-            decName === 'Listen'
+              decName === 'Method' ||
+              decName === 'Watch' ||
+              decName === 'Listen'
           ) {
             if (node.parent.type !== 'MethodDefinition') {
               context.report({
@@ -58,6 +59,5 @@ const rule: Rule.RuleModule = {
     };
   }
 };
-
 
 export default rule;
