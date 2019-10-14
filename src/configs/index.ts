@@ -1,5 +1,7 @@
+import base from './base';
 import recommended from './recommended';
 
 export default {
-  recommended
+  base,
+  recommended,
 };
