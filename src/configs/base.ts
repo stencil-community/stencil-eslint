@@ -10,6 +10,9 @@ export default {
           'jsx': true
         }
       },
+      plugins: [
+        '@stencil'
+      ],
       rules: {
         '@stencil/async-methods': 2,
         '@stencil/ban-prefix': [2, ['stencil', 'stnl', 'st']],
@@ -23,10 +26,7 @@ export default {
         '@stencil/render-returns-host': 2,
         '@stencil/reserved-member-names': 2,
         '@stencil/single-export': 2,
-      },
-      plugins: [
-        '@stencil'
-      ]
+      }
     }
   ]
 };

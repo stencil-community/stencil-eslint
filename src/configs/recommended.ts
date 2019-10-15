@@ -9,8 +9,6 @@ export default {
     '@stencil/strict-boolean-conditions': 2,
     '@stencil/ban-exported-const-enums': 2,
     '@stencil/ban-side-effects': 2,
-    '@stencil/own-methods-must-be-private': 1,
-    '@stencil/own-props-must-be-private': 1,
     '@stencil/strict-mutable': 2,
     '@stencil/decorators-style': [
       'error', {
@@ -23,6 +21,8 @@ export default {
         listen: 'multiline'
       }
     ],
+    '@stencil/own-methods-must-be-private': 1,
+    '@stencil/own-props-must-be-private': 1,
     '@stencil/dependency-suggestions': 1,
     '@stencil/required-jsdoc': 1,
     "react/jsx-no-bind": [1, {

@@ -11,7 +11,6 @@ const rule: Rule.RuleModule = {
     },
     schema: [],
     type: 'problem',
-    fixable: 'code'
   },
 
   create(context): Rule.RuleListener {
@@ -29,15 +28,9 @@ const rule: Rule.RuleModule = {
             (dec: any) => stencilDecorators.includes(dec.expression.expression.escapedText));
         const stencilCycle = stencilLifecycle.includes(originalNode.name.escapedText);
         if (!stencilDecorator && !stencilCycle && !isPrivate(originalNode)) {
-          const text = String(originalNode.getFullText());
           context.report({
             node: node,
-            message: `Own class methods cannot be public`,
-            fix(fixer) {
-              const methodName = node.key.name;
-              const result = text.replace('public ', '').replace(methodName, `private ${methodName}`);
-              return fixer.replaceText(node, result);
-            }
+            message: `Own class methods cannot be public`
           });
         }
       }

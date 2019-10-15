@@ -20,7 +20,7 @@ export default {
 
 
     // Best practices
-    "no-shadow": "error",
+    "no-shadow": 2,
     "require-atomic-updates": 2,
     "no-var": 2,
     "prefer-object-spread": 2,
@@ -40,9 +40,9 @@ export default {
     "operator-linebreak": [2, "after", { "overrides": { "?": "before", ":": "before" } }],
     "linebreak-style": 2,
     "space-in-parens": 2,
-    "@typescript-eslint/semi": ["error"],
-    "@typescript-eslint/brace-style": "error",
-    "@typescript-eslint/func-call-spacing": "error",
+    "@typescript-eslint/semi": 2,
+    "@typescript-eslint/brace-style": 2,
+    "@typescript-eslint/func-call-spacing": 2,
 
     // JSX formatting
     "react/jsx-closing-tag-location": 2,

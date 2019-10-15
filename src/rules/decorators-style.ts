@@ -1,7 +1,6 @@
 import { Rule } from 'eslint';
 import ts from 'typescript';
 import { decoratorName, getDecorator, stencilComponentContext, stencilDecorators } from '../utils';
-import * as os from 'os';
 
 type DecoratorsStyleOptionsEnum = 'inline' | 'multiline' | 'ignore';
 
@@ -66,7 +65,6 @@ const rule: Rule.RuleModule = {
           }
         }
       }],
-    fixable: 'code',
     type: 'layout'
   },
 
@@ -95,13 +93,6 @@ const rule: Rule.RuleModule = {
         context.report({
           node: node,
           message: `The @${decName} decorator can only be applied as ${config}.`,
-          fix(fixer) {
-            const opposite = config === 'multiline' ? ' ' : '\\r?\\n';
-            const separatorChar = config === 'multiline' ? os.EOL : ' ';
-            const matchRegExp = new RegExp(`(${decoratorText})([${opposite}]+)`, 'i');
-            const result = text.replace(matchRegExp, `$1${separatorChar}`);
-            return fixer.replaceText(node, result);
-          }
         });
       }
     }

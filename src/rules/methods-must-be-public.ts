@@ -10,7 +10,6 @@ const rule: Rule.RuleModule = {
       recommended: true
     },
     schema: [],
-    fixable: 'code',
     type: 'problem'
   },
 
@@ -23,13 +22,9 @@ const rule: Rule.RuleModule = {
         if (stencil.isComponent() && getDecorator(node, 'Method')) {
           const originalNode = parserServices.esTreeNodeToTSNodeMap.get(node) as ts.Node;
           if (isPrivate(originalNode)) {
-            const text = String(originalNode.getFullText());
             context.report({
               node: node,
-              message: `Class methods decorated with @Method() cannot be private nor protected`,
-              fix(fixer) {
-                return fixer.replaceText(node, text.replace(/(private |protected )/, ''));
-              }
+              message: `Class methods decorated with @Method() cannot be private nor protected`
             });
           }
         }

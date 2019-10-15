@@ -10,7 +10,6 @@ const rule: Rule.RuleModule = {
     },
     schema: [],
     type: 'problem',
-    fixable: 'code'
   },
 
   create(context): Rule.RuleListener {
@@ -27,15 +26,10 @@ const rule: Rule.RuleModule = {
         const stencilDecorator = originalNode.decorators && originalNode.decorators.some(
             (dec: any) => stencilDecorators.includes(dec.expression.expression.escapedText));
         if (!stencilDecorator && !isPrivate(originalNode)) {
-          const text = String(originalNode.getFullText());
           context.report({
             node: node,
             message: `Own class properties cannot be public`,
-            fix(fixer) {
-              const varName = node.key.name;
-              const result = text.replace('public ', '').replace(varName, `private ${varName}`);
-              return fixer.replaceText(node, result);
-            }
+
           });
         }
       }
