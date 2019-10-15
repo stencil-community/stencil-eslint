@@ -32,7 +32,7 @@ const rule: Rule.RuleModule = {
 const SUGGESTIONS: {[importName: string]: string} = {
   'classnames': `Stencil can already render conditional classes:
   <div class={{disabled: condition}}>`,
-  'lodash': `"loadash" will bloat your build, use "lodash-es" instead: https://www.npmjs.com/package/lodash-es`
+  'lodash': `"lodash" will bloat your build, use "lodash-es" instead: https://www.npmjs.com/package/lodash-es`
 }
 
 export default rule;

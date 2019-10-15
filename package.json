@@ -29,17 +29,17 @@
   "dependencies": {
     "@types/eslint": "^6.1.2",
     "@typescript-eslint/parser": "^2.4.0",
+    "eslint-plugin-react": "^7.16.0",
     "eslint-utils": "^1.4.2",
     "tsutils": "^3.17.1"
   },
   "peerDependencies": {
-    "@typescript-eslint/parser": "^2.4.0",
     "eslint": "^6.0.0"
   },
   "devDependencies": {
     "@types/jest": "^24.0.18",
     "@typescript-eslint/eslint-plugin": "^2.4.0",
-    "eslint": "^6.0.0",
+    "eslint": "^6.5.1",
     "jest": "^24.9.0",
     "jest-cli": "^24.9.0",
     "np": "^5.1.1",
