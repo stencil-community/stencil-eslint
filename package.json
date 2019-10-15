@@ -27,24 +27,24 @@
     "release": "np --no-release-draft"
   },
   "dependencies": {
-    "@types/eslint": "^6.1.1",
-    "@typescript-eslint/parser": "^2.3.0",
+    "@types/eslint": "^6.1.2",
+    "@typescript-eslint/parser": "^2.4.0",
     "eslint-utils": "^1.4.2",
     "tsutils": "^3.17.1"
   },
   "peerDependencies": {
-    "@typescript-eslint/parser": "^2.3.0",
-    "eslint": "^6.4.0"
+    "@typescript-eslint/parser": "^2.4.0",
+    "eslint": "^6.0.0"
   },
   "devDependencies": {
     "@types/jest": "^24.0.18",
-    "@typescript-eslint/eslint-plugin": "^2.3.0",
-    "eslint": "^6.4.0",
+    "@typescript-eslint/eslint-plugin": "^2.4.0",
+    "eslint": "^6.0.0",
     "jest": "^24.9.0",
     "jest-cli": "^24.9.0",
-    "np": "^5.1.0",
+    "np": "^5.1.1",
     "ts-jest": "^24.1.0",
-    "typescript": "3.6.3"
+    "typescript": "3.6.4"
   },
   "engines": {
     "node": ">=8.9.0"
