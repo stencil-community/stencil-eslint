@@ -61,7 +61,8 @@ const rule: Rule.RuleModule = {
   create(context): Rule.RuleListener {
     const parserServices = context.parserServices;
     const program = parserServices.program;
-    const options = parseOptions(context.options[0], true);
+    const rawOptions = context.options[0] || ['allow-null-union', 'allow-undefined-union', 'allow-boolean-or-undefined']
+    const options = parseOptions(rawOptions, true);
     const checker = program.getTypeChecker() as ts.TypeChecker;
 
     function walk(sourceFile: ts.SourceFile): void {
