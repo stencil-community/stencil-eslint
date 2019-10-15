@@ -18,8 +18,12 @@ import requiredPrefix from './required-prefix';
 import reservedMemberNames from './reserved-member-names';
 import singleExport from './single-export';
 import strictMutable from './strict-mutable';
+import banSideEffects from './ban-side-effects';
+import strictBooleanConditions from './strict-boolean-conditions';
 
 export default {
+  'ban-side-effects': banSideEffects,
+  'strict-boolean-conditions': strictBooleanConditions,
   'async-methods': asyncMethods,
   'ban-prefix': banPrefix,
   'class-pattern': classPattern,

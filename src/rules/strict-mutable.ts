@@ -27,7 +27,6 @@ const rule: Rule.RuleModule = {
     },
     schema: [],
     type: 'layout',
-    fixable: 'code'
   },
 
   create(context): Rule.RuleListener {
@@ -87,13 +86,8 @@ const rule: Rule.RuleModule = {
       }
     }
 
-    return {
-      'ClassDeclaration': stencil.rules.ClassDeclaration,
-      'ClassProperty > Decorator[expression.callee.name=Prop]': getMutable,
-      'MethodDefinition': (node: any) => {
-        if (!stencil.isComponent()) {
-          return;
-        }
+    function checkMethod(node: any) {
+      if (stencil.isComponent()) {
         const originalNode = parserServices.esTreeNodeToTSNodeMap.get(node);
         const statements = originalNode.body.statements;
         if (statements && statements.length) {
@@ -101,34 +95,22 @@ const rule: Rule.RuleModule = {
             checkStatement(st);
           });
         }
-      },
+      }
+    }
+
+    return {
+      'ClassDeclaration': stencil.rules.ClassDeclaration,
+      'ClassProperty > Decorator[expression.callee.name=Prop]': getMutable,
+      'MethodDefinition, ArrowFunctionExpression': checkMethod,
       'ClassDeclaration:exit': (node: any) => {
         if (!stencil.isComponent()) {
           return;
         }
         stencil.rules['ClassDeclaration:exit'](node);
         mutableProps.forEach((varNode, varName) => {
-          const originalNode = parserServices.esTreeNodeToTSNodeMap.get(varNode.parent);
-          const text = originalNode.getFullText();
-          const parsed = parseDecorator(varNode);
           context.report({
             node: varNode.parent,
             message: `@Prop() "${varName}" should not be mutable`,
-            fix(fixer) {
-              const options = parsed && parsed.length && parsed[0] || {};
-              delete options.mutable;
-              let opts = '';
-              if (options && Object.keys(options).length) {
-                opts = Object.keys(options).map((key) => {
-                  const value = options[key];
-                  const val = typeof value === 'string' ? `'${value}'` : value;
-                  return `${key}: ${val}`;
-                }).join(', ');
-                opts = `{ ${opts} }`;
-              }
-              const result = text.replace(/@Prop\((.*)?\)/, `@Prop(${opts})`);
-              return fixer.replaceText(varNode, result);
-            }
           });
         });
         mutableProps.clear();

@@ -117,7 +117,7 @@ const rule: Rule.RuleModule = {
     return {
       ...stencil.rules,
       'ClassProperty': getStyle,
-      'MethodDefinition': getStyle
+      'MethodDefinition[kind=method]': getStyle
     };
   }
 };

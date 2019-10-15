@@ -16,7 +16,7 @@ const rule: Rule.RuleModule = {
     const stencil = stencilComponentContext();
     return {
       ...stencil.rules,
-      'MethodDefinition': (node: any) => {
+      'MethodDefinition[kind=method]': (node: any) => {
         if (!stencil.isComponent()) {
           return;
         }

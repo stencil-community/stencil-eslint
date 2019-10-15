@@ -34,16 +34,13 @@ const rule: Rule.RuleModule = {
           const component = getDecorator(node.parent.parent.parent, 'Component');
           const [{ tag }] = parseDecorator(component);
           const parsedTag = `HTML${parseTag(tag)}Element`;
+
           if (tagType !== parsedTag) {
-            const originalNode = parserServices.esTreeNodeToTSNodeMap.get(node.parent);
-            const text = originalNode.getFullText();
-            const type = originalNode.type.typeName.escapedText;
             context.report({
-              node: node.parent,
+              node: node.parent.typeAnnotation,
               message: `@Element type is not matching tag for component (${parsedTag})`,
               fix(fixer) {
-                const result = text.replace(`: ${type}`, `: ${parsedTag}`);
-                return fixer.replaceText(node, result);
+                return fixer.replaceText(node.parent.typeAnnotation.typeAnnotation, parsedTag);
               }
             });
           }

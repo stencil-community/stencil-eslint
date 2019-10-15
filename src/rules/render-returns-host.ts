@@ -33,7 +33,7 @@ const rule: Rule.RuleModule = {
 
     return {
       ...stencil.rules,
-      'MethodDefinition[key.name=render] ReturnStatement': (node: any) => {
+      'MethodDefinition[kind=method][key.name=render] ReturnStatement': (node: any) => {
         if (!stencil.isComponent()) {
           return;
         }

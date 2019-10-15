@@ -19,7 +19,7 @@ const rule: Rule.RuleModule = {
     const parserServices = context.parserServices;
     return {
       ...stencil.rules,
-      'MethodDefinition': (node: any) => {
+      'MethodDefinition[kind=method]': (node: any) => {
         if (stencil.isComponent() && getDecorator(node, 'Method')) {
           const originalNode = parserServices.esTreeNodeToTSNodeMap.get(node) as ts.Node;
           if (isPrivate(originalNode)) {

@@ -20,7 +20,7 @@ const rule: Rule.RuleModule = {
     const parserServices = context.parserServices;
     return {
       ...stencil.rules,
-      'MethodDefinition': (node: any) => {
+      'MethodDefinition[kind=method]': (node: any) => {
         if (!stencil.isComponent()) {
           return;
         }
