@@ -20,9 +20,11 @@ import singleExport from './single-export';
 import strictMutable from './strict-mutable';
 import banSideEffects from './ban-side-effects';
 import strictBooleanConditions from './strict-boolean-conditions';
+import banExportedConstEnums from './ban-exported-const-enums';
 
 export default {
   'ban-side-effects': banSideEffects,
+  'ban-exported-const-enums': banExportedConstEnums,
   'strict-boolean-conditions': strictBooleanConditions,
   'async-methods': asyncMethods,
   'ban-prefix': banPrefix,

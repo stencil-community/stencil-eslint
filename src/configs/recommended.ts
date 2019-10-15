@@ -3,6 +3,7 @@ export default {
     "plugin:@stencil/base",
   ],
   rules: {
-    '@stencil/strict-boolean-conditions': 'error'
+    '@stencil/strict-boolean-conditions': 'error',
+    '@stencil/ban-exported-const-enums': 'error'
   }
 };
