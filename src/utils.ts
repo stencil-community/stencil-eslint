@@ -74,6 +74,7 @@ export const stencilLifecycle = [
   'disconnectedCallback',
   'componentWillLoad',
   'componentDidLoad',
+  'componentDidUnload',
   'componentWillRender',
   'componentDidRender',
   'componentWillUpdate',
