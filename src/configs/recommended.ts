@@ -6,7 +6,7 @@ export default {
     "plugin:@stencil/base",
   ],
   rules: {
-    '@stencil/strict-boolean-conditions': 2,
+    '@stencil/strict-boolean-conditions': 1,
     '@stencil/ban-exported-const-enums': 2,
     '@stencil/ban-side-effects': 2,
     '@stencil/strict-mutable': 2,

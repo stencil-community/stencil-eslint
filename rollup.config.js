@@ -7,7 +7,7 @@ export default {
     })
   ],
   treeshake: {
-    pureExternalModules: true
+    moduleSideEffects: 'no-external'
   },
   external: [
     'eslint',
