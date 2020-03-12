@@ -25,6 +25,20 @@ npm i eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-p
 }
 ```
 
+Add a new `lint` script to the `package.json`:
+```json
+{
+  "scripts": {
+    "lint": "eslint src/**/*{.ts,.tsx}"
+  }
+}
+```
+
+Lint all your project:
+```
+npm run lint
+```
+
 ## Supported Rules
 
 - [`@stencil/async-methods`](./docs/async-methods.md)
