@@ -59,7 +59,7 @@ const isInScope = (n: any): boolean => {
   return false;
 }
 
-const DEFAULTS = ['describe', 'test', 'bind'];
+const DEFAULTS = ['describe', 'test', 'bind', 'createStore'];
 
 export default rule;
 

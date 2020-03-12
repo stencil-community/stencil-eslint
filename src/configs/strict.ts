@@ -23,7 +23,6 @@ export default {
 
     // Best practices
     "no-shadow": 2,
-    "require-atomic-updates": 2,
     "no-var": 2,
     "prefer-object-spread": 2,
     "no-nested-ternary": 2,
@@ -36,7 +35,9 @@ export default {
     "comma-spacing": 2,
     "comma-style": 2,
     "computed-property-spacing": 2,
-    "comma-dangle": [2, "always-multiline"],
+    "comma-dangle": [2, {
+      'objects': 'always-multiline'
+    }],
     "func-style": [2, "expression", { "allowArrowFunctions": true }],
     "multiline-ternary": [2, "always-multiline"],
     "operator-linebreak": [2, "after", { "overrides": { "?": "before", ":": "before" } }],

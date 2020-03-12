@@ -10,6 +10,10 @@ export default {
           'jsx': true
         }
       },
+      env: {
+        es2020: true,
+        browser: true,
+      },
       plugins: [
         '@stencil'
       ],
