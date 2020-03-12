@@ -8,7 +8,7 @@ export default {
   rules: {
     '@stencil/strict-boolean-conditions': 1,
     '@stencil/ban-exported-const-enums': 2,
-    '@stencil/ban-side-effects': 2,
+    // '@stencil/ban-side-effects': 2,
     '@stencil/strict-mutable': 2,
     '@stencil/decorators-style': [
       'error', {
