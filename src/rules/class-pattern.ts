@@ -43,10 +43,13 @@ const rule: Rule.RuleModule = {
         const regExp = new RegExp(pattern, ignoreCase ? 'i' : undefined);
 
         if (!regExp.test(className)) {
-          const [{ tag }] = parseDecorator(component);
+          const [opts] = parseDecorator(component);
+          if (!opts || !opts.tag) {
+            return;
+          }
           context.report({
             node: node,
-            message: `The class name in component with tag name ${tag} is not valid (${regExp}).`
+            message: `The class name in component with tag name ${opts.tag} is not valid (${regExp}).`
           });
         }
       }

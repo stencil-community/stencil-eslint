@@ -15,7 +15,6 @@ const rule: Rule.RuleModule = {
 
   create(context): Rule.RuleListener {
     const stencil = stencilComponentContext();
-    const parserServices = context.parserServices;
 
     function parseTag(tag: string) {
       let result = tag[0].toUpperCase() + tag.slice(1);
@@ -32,8 +31,11 @@ const rule: Rule.RuleModule = {
         if (stencil.isComponent()) {
           const tagType = getType(node.parent);
           const component = getDecorator(node.parent.parent.parent, 'Component');
-          const [{ tag }] = parseDecorator(component);
-          const parsedTag = `HTML${parseTag(tag)}Element`;
+          const [opts] = parseDecorator(component);
+          if (!opts || !opts.tag) {
+            return;
+          }
+          const parsedTag = `HTML${parseTag(opts.tag)}Element`;
 
           if (tagType !== parsedTag) {
             context.report({
