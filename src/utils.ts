@@ -76,6 +76,7 @@ export const stencilLifecycle = [
   'componentDidLoad',
   'componentWillRender',
   'componentDidRender',
+  'componentShouldUpdate',
   'componentWillUpdate',
   'componentDidUpdate',
   'render'
