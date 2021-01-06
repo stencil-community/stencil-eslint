@@ -1,6 +1,6 @@
 @Component({ tag: 'sample-tag' })
 export class SampleTag {
-    @Prop({ reflect: true }) aBoolean = true;
+    @Prop() aBoolean = true;
 
     render() {
         return (<div>test</div>);

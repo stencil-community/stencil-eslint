@@ -1,10 +1,10 @@
 import { Rule } from 'eslint';
-import { getDecorator, parseDecorator, stencilComponentContext } from '../utils';
+import { getDecorator, stencilComponentContext } from '../utils';
 
 const rule: Rule.RuleModule = {
     meta: {
         docs: {
-            description: 'This rule will catch any Stencil boolean Props that would not be able to be set to false with plain HTML5.',
+            description: 'This rule catches Stencil boolean Props that would not be able to be set to false with HTML5-compliant attributes.',
             category: 'Possible Errors',
             recommended: false
         },
@@ -20,16 +20,11 @@ const rule: Rule.RuleModule = {
             'ClassProperty': (node: any) => {
                 const propDecorator = getDecorator(node, 'Prop');
                 if (stencil.isComponent() && propDecorator) {
-                    const [opts] = parseDecorator(propDecorator);
-                    if (opts?.reflected === false) {
-                        return;
-                    }
-
                     const initializer = node.value.value;
                     if (initializer === true) {
                         context.report({
                             node: node.key,
-                            message: `Boolean properties decorated with @Prop() that are reflected should not be initialized to true`
+                            message: `Boolean properties decorated with @Prop() should not be initialized to true`
                         });
                     }
                 }
