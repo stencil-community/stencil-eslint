@@ -36,7 +36,7 @@ const rule: Rule.RuleModule = {
           if (!isValid) {
             context.report({
               node: node,
-              message: `The @${decName} decorator must to be documented.`
+              message: `The @${decName} decorator must be documented.`
             });
           } else if (haveTags) {
             context.report({
