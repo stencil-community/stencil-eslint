@@ -35,7 +35,7 @@
     "@typescript-eslint/eslint-plugin": "^2.23.0",
     "eslint-plugin-react": "^7.16.0",
     "eslint": "^6.0.0",
-    "typescript": "^3.8.0"
+    "typescript": "^3.8.0 || ^4.0.0"
   },
   "devDependencies": {
     "@types/eslint": "^6.1.2",
