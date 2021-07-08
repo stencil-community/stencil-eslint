@@ -11,7 +11,8 @@ export function isPrivate(originalNode: ts.Node) {
       m.kind === ts.SyntaxKind.ProtectedKeyword
     ));
   }
-  return false;
+  // detect private identifier (#)
+  return originalNode.getChildAt(0).kind === SyntaxKind.PrivateIdentifier;
 }
 
 export function getDecorator(node: any, decoratorName?: string): any | any[] {
