@@ -43,7 +43,7 @@ npm run lint
 
 - [`@stencil/async-methods`](./docs/async-methods.md)
 
-This rule catches Stencil public methods that are not async.
+This rule catches Stencil public methods decorated with `@Method` that are not async.
 
 - [`@stencil/ban-prefix`](./docs/ban-prefix.md)
 

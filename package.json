@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "eslint-utils": "^2.0.0",
-    "tsutils": "^3.0.0"
+    "tsutils": "^3.21.0"
   },
   "peerDependencies": {
     "@typescript-eslint/parser": "^2.23.0",

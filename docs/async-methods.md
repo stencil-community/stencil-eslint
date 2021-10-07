@@ -1,6 +1,6 @@
 # async-methods
 
-Ensures that all `Methods` are `async`.
+Ensures that all `@Methods` are `async`.
 
 ## Config
 
