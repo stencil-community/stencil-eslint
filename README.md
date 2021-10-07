@@ -166,4 +166,4 @@ All contributions welcome.
 
 ## Licence
 
-- [MIT](https://raw.githubusercontent.com/ionic-team/stencil/master/LICENSE)
+- [MIT](https://raw.githubusercontent.com/ionic-team/stencil/main/LICENSE)
