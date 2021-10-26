@@ -8,10 +8,12 @@ describe('stencil rules', () => {
     good: path.resolve(__dirname, 'async-methods.good.tsx'),
     wrong: path.resolve(__dirname, 'async-methods.wrong.tsx')
   };
+  const validCode = fs.readFileSync(files.good, 'utf8');
+
   ruleTester.run('async-methods', rule, {
     valid: [
       {
-        code: fs.readFileSync(files.good, 'utf8'),
+        code: validCode,
         filename: files.good
       }
     ],
@@ -20,7 +22,8 @@ describe('stencil rules', () => {
       {
         code: fs.readFileSync(files.wrong, 'utf8'),
         filename: files.wrong,
-        errors: 1
+        errors: 1,
+        output: validCode,
       }
     ]
   });

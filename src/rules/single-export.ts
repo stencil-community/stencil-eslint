@@ -29,7 +29,7 @@ const rule: Rule.RuleModule = {
           nonTypeExports.forEach(symbol => {
             const errorNode = (symbol.valueDeclaration)
                 ? parserServices.tsNodeToESTreeNodeMap.get(symbol.valueDeclaration).id
-                : parserServices.tsNodeToESTreeNodeMap.get(symbol.declarations[0]);
+                : parserServices.tsNodeToESTreeNodeMap.get(symbol.declarations?.[0]);
 
             context.report({
               node: errorNode,
