@@ -39,10 +39,9 @@ Add a new `lint` script to the `package.json`:
 }
 ```
 
-Considering putting a note about ESLint, node_modules is ignored...
+By default, ESLint will ignore your `node_modules/` directory. Consider adding a `.eslintignore` file at the root of
+your project with any output target directories to avoid false positive errors from ESLint.
 ```
-stencil.config.ts
-
 # place any directories created by the Stencil compilation process here
 dist
 loader
