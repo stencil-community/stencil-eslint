@@ -12,7 +12,8 @@ export function isPrivate(originalNode: ts.Node) {
     ));
   }
   // detect private identifier (#)
-  return originalNode.getChildAt(0).kind === SyntaxKind.PrivateIdentifier;
+  const firstChildNode = originalNode.getChildAt(0);
+  return firstChildNode ? firstChildNode.kind === SyntaxKind.PrivateIdentifier : false;
 }
 
 export function getDecorator(node: any, decoratorName?: string): any | any[] {
