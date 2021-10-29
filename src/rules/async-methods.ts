@@ -37,9 +37,16 @@ const rule: Rule.RuleModule = {
             node: node.key,
             message: `External @Method() ${node.key.name}() must return a Promise. Consider prefixing the method with async, such as @Method() async ${node.key.name}().`,
             fix(fixer) {
-              const result = text.replace('@Method()\n', '@Method()\nasync')
+              const result = text
+                  // a newline + whitespace preceding `@Method` may be captured, remove it
+                  .trimLeft()
+                  // capture the number of following the decorator to know how far to indent the `async` method
+                  .replace(/@Method\(\)\n(\s*)/, '@Method()\n$1async ')
+                  // replace any inlined @Method decorators
                   .replace('@Method() ', '@Method() async')
+                  // swap the order of the `async` and `public` keywords
                   .replace('async public', 'public async')
+                  // swap the order of the `async` and `private` keywords
                   .replace('async private', 'private async');
               return fixer.replaceText(node, result);
             }

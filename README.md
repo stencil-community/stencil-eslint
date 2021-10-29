@@ -4,10 +4,15 @@ ESLint rules specific to Stencil JS projects.
 
 ## Installation
 
-Install the following deps in your stencil project:
+If you're using npm v7+, you only need to install this package. Its peer dependencies will be automatically installed.
+```bash
+npm i --save-dev @stencil/eslint-plugin
+```
+
+If you're using npm v6 or lower, you will need to install this package and its peer dependencies in your stencil project:
 
 ```bash
-npm i eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-plugin-react @stencil/eslint-plugin --save-dev
+npm i --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-plugin-react @stencil/eslint-plugin typescript
 ```
 
 ## Usage
@@ -32,6 +37,15 @@ Add a new `lint` script to the `package.json`:
     "lint": "eslint src/**/*{.ts,.tsx}"
   }
 }
+```
+
+By default, ESLint will ignore your `node_modules/` directory. Consider adding a `.eslintignore` file at the root of
+your project with any output target directories to avoid false positive errors from ESLint.
+```
+# place any directories created by the Stencil compilation process here
+dist
+loader
+www
 ```
 
 Lint all your project:
