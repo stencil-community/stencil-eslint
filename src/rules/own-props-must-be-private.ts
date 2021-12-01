@@ -10,6 +10,7 @@ const rule: Rule.RuleModule = {
     },
     schema: [],
     type: 'problem',
+    fixable: 'code',
   },
 
   create(context): Rule.RuleListener {
@@ -29,7 +30,9 @@ const rule: Rule.RuleModule = {
           context.report({
             node: node,
             message: `Own class properties cannot be public`,
-
+            fix(fixer) {
+              return fixer.insertTextBefore(node.key, 'private ');
+            }
           });
         }
       }
