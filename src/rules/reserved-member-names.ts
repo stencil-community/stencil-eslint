@@ -63,6 +63,7 @@ const HTML_ELEMENT_KEYS = [
   'translate',
   'dir',
   // 'dataset',
+  'hidden',
   'tabIndex',
   'accessKey',
   'draggable',
