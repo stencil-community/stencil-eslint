@@ -18,7 +18,7 @@ const rule: Rule.RuleModule = {
     const parserServices = context.parserServices;
     return {
       ...stencil.rules,
-      'ClassProperty': (node: any) => {
+      'PropertyDefinition': (node: any) => {
         if (!stencil.isComponent()) {
           return;
         }
