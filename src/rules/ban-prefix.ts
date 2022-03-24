@@ -39,7 +39,7 @@ const rule: Rule.RuleModule = {
         }
         const tag = opts.tag;
         const options = context.options[0] || DEFAULTS;
-        const match = options.some((t: string) => tag.startsWith(t));
+        const match = options.some((t: string) => tag.startsWith(`${t}-`));
 
         if (match) {
           context.report({
