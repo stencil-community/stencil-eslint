@@ -6,6 +6,7 @@ export default {
     "plugin:@stencil-community/recommended",
   ],
   rules: {
+    '@stencil-community/ban-default-true': 2,
     '@stencil-community/strict-boolean-conditions': 2,
 
     // Resets
