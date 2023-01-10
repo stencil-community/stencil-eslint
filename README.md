@@ -1,4 +1,4 @@
-# @stencil/eslint-plugin
+# @stencil-community/eslint-plugin
 
 ESLint rules specific to Stencil JS projects.
 
@@ -6,13 +6,13 @@ ESLint rules specific to Stencil JS projects.
 
 If you're using npm v7+, you only need to install this package. Its peer dependencies will be automatically installed.
 ```bash
-npm i --save-dev @stencil/eslint-plugin
+npm i --save-dev @stencil-community/eslint-plugin
 ```
 
 If you're using npm v6 or lower, you will need to install this package and its peer dependencies in your stencil project:
 
 ```bash
-npm i --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-plugin-react @stencil/eslint-plugin typescript
+npm i --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-plugin-react @stencil-community/eslint-plugin typescript
 ```
 
 ## Usage
@@ -178,6 +178,6 @@ When submitting new rules please:
 
 All contributions welcome.
 
-## Licence
+## License
 
-- [MIT](https://raw.githubusercontent.com/ionic-team/stencil/main/LICENSE)
+- [MIT](https://raw.githubusercontent.com/stencil-community/stencil/main/LICENSE)
