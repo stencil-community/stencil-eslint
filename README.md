@@ -25,7 +25,7 @@ npm i --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plug
     "project": "./tsconfig.json"
   },
   "extends": [
-    "plugin:@stencil/recommended"
+    "plugin:@stencil-community/recommended"
   ]
 }
 ```
@@ -55,83 +55,83 @@ npm run lint
 
 ## Supported Rules
 
-- [`@stencil/async-methods`](./docs/async-methods.md)
+- [`@stencil-community/async-methods`](./docs/async-methods.md)
 
 This rule catches Stencil public methods that are not async.
 
-- [`@stencil/ban-prefix`](./docs/ban-prefix.md)
+- [`@stencil-community/ban-prefix`](./docs/ban-prefix.md)
 
 This rule catches Stencil Component banned tag name prefix.
 
-- [`@stencil/class-pattern`](./docs/class-pattern.md)
+- [`@stencil-community/class-pattern`](./docs/class-pattern.md)
 
 This rule catches Stencil Component class name not matching configurable pattern.
 
-- [`@stencil/decorators-context`](./docs/decorators-context.md)
+- [`@stencil-community/decorators-context`](./docs/decorators-context.md)
 
 This rule catches Stencil decorators in bad locations.
 
-- [`@stencil/decorators-style`](./docs/decorators-style.md)
+- [`@stencil-community/decorators-style`](./docs/decorators-style.md)
 
 This rule catches Stencil decorators style usage.
 
-- [`@stencil/element-type`](./docs/element-type.md)
+- [`@stencil-community/element-type`](./docs/element-type.md)
 
 This rule catches Stencil Element decorator have the correct type.
 
-- [`@stencil/host-data-deprecated`](./docs/host-data-deprecated.md)
+- [`@stencil-community/host-data-deprecated`](./docs/host-data-deprecated.md)
 
 This rule catches Stencil method hostData.
 
-- [`@stencil/methods-must-be-public`](./docs/methods-must-be-public.md)
+- [`@stencil-community/methods-must-be-public`](./docs/methods-must-be-public.md)
 
 This rule catches Stencil Methods marked as private or protected.
 
-- [`@stencil/no-unused-watch`](./docs/no-unused-watch.md)
+- [`@stencil-community/no-unused-watch`](./docs/no-unused-watch.md)
 
 This rule catches Stencil Watchs with non existing Props or States.
 
-- [`@stencil/own-methods-must-be-private`](./docs/own-methods-must-be-private.md)
+- [`@stencil-community/own-methods-must-be-private`](./docs/own-methods-must-be-private.md)
 
 This rule catches own class methods marked as public.
 
-- [`@stencil/own-props-must-be-private`](./docs/own-props-must-be-private.md)
+- [`@stencil-community/own-props-must-be-private`](./docs/own-props-must-be-private.md)
 
 This rule catches own class properties marked as public.
 
-- [`@stencil/prefer-vdom-listener`](./docs/prefer-vdom-listener.md)
+- [`@stencil-community/prefer-vdom-listener`](./docs/prefer-vdom-listener.md)
 
 This rule catches Stencil Listen with vdom events.
 
-- [`@stencil/props-must-be-public`](./docs/props-must-be-public.md)
+- [`@stencil-community/props-must-be-public`](./docs/props-must-be-public.md)
 
 This rule catches Stencil Props marked as private or protected.
 
-- [`@stencil/props-must-be-readonly`](./docs/props-must-be-readonly.md)
+- [`@stencil-community/props-must-be-readonly`](./docs/props-must-be-readonly.md)
 
 This rule catches Stencil Props marked as non readonly, excluding mutable ones.
 
-- [`@stencil/render-returns-host`](./docs/render-returns-host.md)
+- [`@stencil-community/render-returns-host`](./docs/render-returns-host.md)
 
 This rule catches Stencil Render returning array instead of Host tag.
 
-- [`@stencil/required-jsdoc`](./docs/required-jsdoc.md)
+- [`@stencil-community/required-jsdoc`](./docs/required-jsdoc.md)
 
 This rule catches Stencil Props, Methods and Events to define jsdoc.
 
-- [`@stencil/required-prefix`](./docs/required-prefix.md)
+- [`@stencil-community/required-prefix`](./docs/required-prefix.md)
 
 This rule catches Stencil Component required tag name prefix.
 
-- [`@stencil/reserved-member-names`](./docs/reserved-member-names.md)
+- [`@stencil-community/reserved-member-names`](./docs/reserved-member-names.md)
 
 This rule catches Stencil Prop names that share names of Global HTML Attributes.
 
-- [`@stencil/single-export`](./docs/single-export.md)
+- [`@stencil-community/single-export`](./docs/single-export.md)
 
 This rule catches modules that expose more than just the Stencil Component itself.
 
-- [`@stencil/strict-mutable`](./docs/strict-mutable.md)
+- [`@stencil-community/strict-mutable`](./docs/strict-mutable.md)
 
 This rule catches Stencil Prop marked as mutable but not changing value in code.
 
@@ -139,10 +139,10 @@ This rule catches Stencil Prop marked as mutable but not changing value in code.
 
 ```json
 {
-  "@stencil/async-methods": "error",
-  "@stencil/ban-prefix": ["error", ["stencil", "stnl", "st"]],
-  "@stencil/decorators-context": "error",
-  "@stencil/decorators-style": [
+  "@stencil-community/async-methods": "error",
+  "@stencil-community/ban-prefix": ["error", ["stencil", "stnl", "st"]],
+  "@stencil-community/decorators-context": "error",
+  "@stencil-community/decorators-style": [
     "error", {
       "prop": "inline",
       "state": "inline",
@@ -152,20 +152,20 @@ This rule catches Stencil Prop marked as mutable but not changing value in code.
       "watch": "multiline",
       "listen": "multiline"
     }],
-  "@stencil/element-type": "error",
-  "@stencil/host-data-deprecated": "error",
-  "@stencil/methods-must-be-public": "error",
-  "@stencil/no-unused-watch": "error",
-  "@stencil/own-methods-must-be-private": "error",
-  "@stencil/own-props-must-be-private": "error",
-  "@stencil/prefer-vdom-listener": "error",
-  "@stencil/props-must-be-public": "error",
-  "@stencil/props-must-be-readonly": "error",
-  "@stencil/render-returns-host": "error",
-  "@stencil/required-jsdoc": "error",
-  "@stencil/reserved-member-names": "error",
-  "@stencil/single-export": "error",
-  "@stencil/strict-mutable": "error"
+  "@stencil-community/element-type": "error",
+  "@stencil-community/host-data-deprecated": "error",
+  "@stencil-community/methods-must-be-public": "error",
+  "@stencil-community/no-unused-watch": "error",
+  "@stencil-community/own-methods-must-be-private": "error",
+  "@stencil-community/own-props-must-be-private": "error",
+  "@stencil-community/prefer-vdom-listener": "error",
+  "@stencil-community/props-must-be-public": "error",
+  "@stencil-community/props-must-be-readonly": "error",
+  "@stencil-community/render-returns-host": "error",
+  "@stencil-community/required-jsdoc": "error",
+  "@stencil-community/reserved-member-names": "error",
+  "@stencil-community/single-export": "error",
+  "@stencil-community/strict-mutable": "error"
 }
 ```
 
