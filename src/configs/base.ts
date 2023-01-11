@@ -15,21 +15,21 @@ export default {
         browser: true,
       },
       plugins: [
-        '@stencil'
+        '@stencil-community'
       ],
       rules: {
-        '@stencil/async-methods': 2,
-        '@stencil/ban-prefix': [2, ['stencil', 'stnl', 'st']],
-        '@stencil/decorators-context': 2,
-        '@stencil/element-type': 2,
-        '@stencil/host-data-deprecated': 2,
-        '@stencil/methods-must-be-public': 2,
-        '@stencil/no-unused-watch': 2,
-        '@stencil/prefer-vdom-listener': 2,
-        '@stencil/props-must-be-public': 2,
-        '@stencil/render-returns-host': 2,
-        '@stencil/reserved-member-names': 2,
-        '@stencil/single-export': 2,
+        '@stencil-community/async-methods': 2,
+        '@stencil-community/ban-prefix': [2, ['stencil', 'stnl', 'st']],
+        '@stencil-community/decorators-context': 2,
+        '@stencil-community/element-type': 2,
+        '@stencil-community/host-data-deprecated': 2,
+        '@stencil-community/methods-must-be-public': 2,
+        '@stencil-community/no-unused-watch': 2,
+        '@stencil-community/prefer-vdom-listener': 2,
+        '@stencil-community/props-must-be-public': 2,
+        '@stencil-community/render-returns-host': 2,
+        '@stencil-community/reserved-member-names': 2,
+        '@stencil-community/single-export': 2,
       }
     }
   ],

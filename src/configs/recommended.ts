@@ -3,14 +3,14 @@ export default {
     "react"
   ],
   extends: [
-    "plugin:@stencil/base",
+    "plugin:@stencil-community/base",
   ],
   rules: {
-    '@stencil/strict-boolean-conditions': 1,
-    '@stencil/ban-exported-const-enums': 2,
-    // '@stencil/ban-side-effects': 2,
-    '@stencil/strict-mutable': 2,
-    '@stencil/decorators-style': [
+    '@stencil-community/strict-boolean-conditions': 1,
+    '@stencil-community/ban-exported-const-enums': 2,
+    // '@stencil-community/ban-side-effects': 2,
+    '@stencil-community/strict-mutable': 2,
+    '@stencil-community/decorators-style': [
       'error', {
         prop: 'inline',
         state: 'inline',
@@ -21,10 +21,10 @@ export default {
         listen: 'multiline'
       }
     ],
-    '@stencil/own-methods-must-be-private': 1,
-    '@stencil/own-props-must-be-private': 1,
-    '@stencil/dependency-suggestions': 1,
-    '@stencil/required-jsdoc': 1,
+    '@stencil-community/own-methods-must-be-private': 1,
+    '@stencil-community/own-props-must-be-private': 1,
+    '@stencil-community/dependency-suggestions': 1,
+    '@stencil-community/required-jsdoc': 1,
     "react/jsx-no-bind": [1, {
       "ignoreRefs": true
     }]
