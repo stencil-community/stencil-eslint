@@ -29,7 +29,7 @@ const rule: Rule.RuleModule = {
               decName === 'Element' ||
               decName === 'Event'
           ) {
-            if (node.parent.type !== 'ClassProperty') {
+            if (node.parent.type !== 'PropertyDefinition') {
               context.report({
                 node: node,
                 message: `The @${decName} decorator can only be applied to class properties.`

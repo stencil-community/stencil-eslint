@@ -20,7 +20,7 @@ const rule: Rule.RuleModule = {
     const parserServices = context.parserServices;
     return {
       ...stencil.rules,
-      'ClassProperty': (node: any) => {
+      'PropertyDefinition': (node: any) => {
         const propDecorator = getDecorator(node, 'Prop');
         if (stencil.isComponent() && propDecorator) {
           const [opts] = parseDecorator(propDecorator);
