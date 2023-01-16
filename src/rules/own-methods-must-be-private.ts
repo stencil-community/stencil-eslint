@@ -1,16 +1,22 @@
 import { Rule } from 'eslint';
 import ts from 'typescript';
-import { isPrivate, stencilComponentContext, stencilDecorators, stencilLifecycle } from '../utils';
+import {
+  getDecoratorList,
+  isPrivate,
+  stencilComponentContext,
+  stencilDecorators,
+  stencilLifecycle,
+} from "../utils";
 
 const rule: Rule.RuleModule = {
   meta: {
     docs: {
-      description: 'This rule catches own class methods marked as public.',
-      category: 'Possible Errors',
-      recommended: true
+      description: "This rule catches own class methods marked as public.",
+      category: "Possible Errors",
+      recommended: true,
     },
     schema: [],
-    type: 'problem',
+    type: "problem",
   },
 
   create(context): Rule.RuleListener {
@@ -19,23 +25,30 @@ const rule: Rule.RuleModule = {
     const parserServices = context.parserServices;
     return {
       ...stencil.rules,
-      'MethodDefinition[kind=method]': (node: any) => {
+      "MethodDefinition[kind=method]": (node: any) => {
         if (!stencil.isComponent()) {
           return;
         }
         const originalNode = parserServices.esTreeNodeToTSNodeMap.get(node);
-        const stencilDecorator = originalNode.decorators && originalNode.decorators.some(
-            (dec: any) => stencilDecorators.includes(dec.expression.expression.escapedText));
-        const stencilCycle = stencilLifecycle.includes(originalNode.name.escapedText);
+
+        const decorators = getDecoratorList(originalNode);
+        const stencilDecorator =
+          decorators &&
+          decorators.some((dec: any) =>
+            stencilDecorators.includes(dec.expression.expression.escapedText)
+          );
+        const stencilCycle = stencilLifecycle.includes(
+          originalNode.name.escapedText
+        );
         if (!stencilDecorator && !stencilCycle && !isPrivate(originalNode)) {
           context.report({
             node: node,
-            message: `Own class methods cannot be public`
+            message: `Own class methods cannot be public`,
           });
         }
-      }
+      },
     };
-  }
+  },
 };
 
 export default rule;

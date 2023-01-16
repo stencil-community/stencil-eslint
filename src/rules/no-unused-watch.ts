@@ -44,7 +44,7 @@ const rule: Rule.RuleModule = {
     }
 
     return {
-      'ClassDeclaration': stencil.rules.ClassDeclaration,
+      ClassDeclaration: stencil.rules.ClassDeclaration,
       'PropertyDefinition > Decorator[expression.callee.name=Prop]': getVars,
       'PropertyDefinition > Decorator[expression.callee.name=State]': getVars,
       'MethodDefinition[kind=method] > Decorator[expression.callee.name=Watch]': checkWatch,
