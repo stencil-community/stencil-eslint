@@ -38,7 +38,7 @@ export default {
       // intentionally fill the version field with an invalid semver string. this appears to remove the error/warning
       // emitted to the console when this key/value pair is not in place, but does not tie us to a version of React,
       // even superficially
-      "version": "stencil-maintainers-put-an-invalid-version-intentionally-if-this-errors-please-raise-an-issue-https://github.com/ionic-team/stencil-eslint/issues",
+      "version": "stencil-maintainers-put-an-invalid-version-intentionally-if-this-errors-please-raise-an-issue-https://github.com/stencil-community/stencil-eslint/issues",
     }
   },
 };
