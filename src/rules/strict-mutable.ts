@@ -39,7 +39,7 @@ const rule: Rule.RuleModule = {
     stencil.rules["ClassDeclaration:exit"]
     return {
       'ClassDeclaration': stencil.rules.ClassDeclaration,
-      'ClassProperty > Decorator[expression.callee.name=Prop]': getMutable,
+      'PropertyDefinition > Decorator[expression.callee.name=Prop]': getMutable,
       'AssignmentExpression[left.object.type=ThisExpression][left.property.type=Identifier]': checkAssigment,
       'ClassDeclaration:exit': (node: any) => {
         const isCmp = stencil.isComponent();

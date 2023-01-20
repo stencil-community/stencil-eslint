@@ -5,15 +5,28 @@ import { getStaticValue } from 'eslint-utils';
 const SyntaxKind = ts.SyntaxKind;
 
 export function isPrivate(originalNode: ts.Node) {
-  if (originalNode.modifiers) {
-    return originalNode.modifiers.some(m => (
-      m.kind === ts.SyntaxKind.PrivateKeyword ||
-      m.kind === ts.SyntaxKind.ProtectedKeyword
-    ));
+  const modifiers = ts.canHaveModifiers(originalNode)
+    ? ts.getModifiers(originalNode)
+    : undefined;
+  if (modifiers) {
+    return modifiers.some(
+      (m) =>
+        m.kind === ts.SyntaxKind.PrivateKeyword ||
+        m.kind === ts.SyntaxKind.ProtectedKeyword
+    );
   }
   // detect private identifier (#)
   const firstChildNode = originalNode.getChildAt(0);
   return firstChildNode ? firstChildNode.kind === SyntaxKind.PrivateIdentifier : false;
+}
+
+export function getDecoratorList(
+  originalNode: ts.Node
+): readonly ts.Decorator[] | undefined {
+  const decorators = ts.canHaveDecorators(originalNode)
+    ? ts.getDecorators(originalNode)
+    : undefined;
+  return decorators;
 }
 
 export function getDecorator(node: any, decoratorName?: string): any | any[] {
