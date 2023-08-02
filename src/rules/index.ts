@@ -1,4 +1,5 @@
 import asyncMethods from './async-methods';
+import banDefaultTrue from './ban-default-true';
 import banPrefix from './ban-prefix';
 import classPattern from './class-pattern';
 import decoratorsContext from './decorators-context';
@@ -25,6 +26,7 @@ import dependencySuggestions from './dependency-suggestions';
 
 export default {
   'ban-side-effects': banSideEffects,
+  'ban-default-true': banDefaultTrue,
   'ban-exported-const-enums': banExportedConstEnums,
   'dependency-suggestions': dependencySuggestions,
   'strict-boolean-conditions': strictBooleanConditions,
