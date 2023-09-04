@@ -7,6 +7,7 @@ export default {
   ],
   rules: {
     '@stencil-community/strict-boolean-conditions': 1,
+    '@stencil-community/ban-default-true': 1,
     '@stencil-community/ban-exported-const-enums': 2,
     // '@stencil-community/ban-side-effects': 2,
     '@stencil-community/strict-mutable': 2,
