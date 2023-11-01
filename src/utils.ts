@@ -82,7 +82,7 @@ export function getType(node: any) {
   return node.typeAnnotation.typeAnnotation.typeName.name;
 }
 
-export const stencilDecorators = ['Component', 'Prop', 'State', 'Watch', 'Element', 'Method', 'Event', 'Listen'];
+export const stencilDecorators = ['Component', 'Prop', 'State', 'Watch', 'Element', 'Method', 'Event', 'Listen', 'AttachInternals'];
 
 export const stencilLifecycle = [
   'connectedCallback',
