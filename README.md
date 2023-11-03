@@ -59,6 +59,10 @@ npm run lint
 
 This rule catches Stencil public methods that are not async.
 
+- [`@stencil-community/ban-default-true`](./docs/ban-default-true.md)
+
+This rule catches Stencil Props with a default value of `true`.
+
 - [`@stencil-community/ban-prefix`](./docs/ban-prefix.md)
 
 This rule catches Stencil Component banned tag name prefix.
