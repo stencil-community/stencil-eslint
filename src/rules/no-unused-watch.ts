@@ -44,9 +44,9 @@ const rule: Rule.RuleModule = {
     }
 
     return {
-      'ClassDeclaration': stencil.rules.ClassDeclaration,
-      'ClassProperty > Decorator[expression.callee.name=Prop]': getVars,
-      'ClassProperty > Decorator[expression.callee.name=State]': getVars,
+      ClassDeclaration: stencil.rules.ClassDeclaration,
+      'PropertyDefinition > Decorator[expression.callee.name=Prop]': getVars,
+      'PropertyDefinition > Decorator[expression.callee.name=State]': getVars,
       'MethodDefinition[kind=method] > Decorator[expression.callee.name=Watch]': checkWatch,
       'ClassDeclaration:exit': (node: any) => {
         if (!stencil.isComponent()) {

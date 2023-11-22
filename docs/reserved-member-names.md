@@ -9,5 +9,5 @@ No config is needed
 ## Usage
 
 ```json
-{ "@stencil/reserved-member-names": "error" }
+{ "@stencil-community/reserved-member-names": "error" }
 ```

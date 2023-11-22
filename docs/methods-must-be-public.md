@@ -9,7 +9,7 @@ No config is needed
 ## Usage
 
 ```json
-{ "@stencil/methods-must-be-public": "error" }
+{ "@stencil-community/methods-must-be-public": "error" }
 ```
 
 > Fix included

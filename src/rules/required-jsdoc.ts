@@ -50,7 +50,7 @@ const rule: Rule.RuleModule = {
 
     return {
       ...stencil.rules,
-      'ClassProperty': getJSDoc,
+      'PropertyDefinition': getJSDoc,
       'MethodDefinition[kind=method]': getJSDoc
     };
   }

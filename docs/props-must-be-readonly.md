@@ -9,7 +9,7 @@ No config is needed
 ## Usage
 
 ```json
-{ "@stencil/props-must-be-readonly": "error" }
+{ "@stencil-community/props-must-be-readonly": "error" }
 ```
 
 > Fix included
