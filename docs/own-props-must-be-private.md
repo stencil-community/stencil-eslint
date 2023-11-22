@@ -9,7 +9,7 @@ No config is needed
 ## Usage
 
 ```json
-{ "@stencil/own-props-must-be-private": "error" }
+{ "@stencil-community/own-props-must-be-private": "error" }
 ```
 
 > Fix included

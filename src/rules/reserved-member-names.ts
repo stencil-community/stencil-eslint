@@ -51,7 +51,7 @@ const rule: Rule.RuleModule = {
     };
     return {
       ...stencil.rules,
-      'ClassProperty > Decorator[expression.callee.name=Prop]': checkName,
+      'PropertyDefinition > Decorator[expression.callee.name=Prop]': checkName,
       'MethodDefinition[kind=method] > Decorator[expression.callee.name=Method]': checkName
     };
   }

@@ -27,7 +27,7 @@ const rule: Rule.RuleModule = {
 
     return {
       ...stencil.rules,
-      'ClassProperty > Decorator[expression.callee.name=Element]': (node: any) => {
+      'PropertyDefinition > Decorator[expression.callee.name=Element]': (node: any) => {
         if (stencil.isComponent()) {
           const tagType = getType(node.parent);
           const component = getDecorator(node.parent.parent.parent, 'Component');
