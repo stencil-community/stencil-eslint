@@ -5,3 +5,11 @@ export class SampleTag {
     return (<div>test</div>);
   }
 }
+
+@Component({ tag: 'standard-tag' })
+export class StandardTag {
+
+  render() {
+    return (<div>test</div>);
+  }
+}

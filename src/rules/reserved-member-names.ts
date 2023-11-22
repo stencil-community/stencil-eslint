@@ -51,7 +51,7 @@ const rule: Rule.RuleModule = {
     };
     return {
       ...stencil.rules,
-      'ClassProperty > Decorator[expression.callee.name=Prop]': checkName,
+      'PropertyDefinition > Decorator[expression.callee.name=Prop]': checkName,
       'MethodDefinition[kind=method] > Decorator[expression.callee.name=Method]': checkName
     };
   }
@@ -63,15 +63,15 @@ const HTML_ELEMENT_KEYS = [
   'translate',
   'dir',
   // 'dataset',
-  // 'hidden',
+  'hidden',
   'tabIndex',
   'accessKey',
   'draggable',
-  // 'spellcheck',
-  // 'autocapitalize',
+  'spellcheck',
+  'autocapitalize',
   'contentEditable',
   'isContentEditable',
-  // 'inputMode',
+  'inputMode',
   'offsetParent',
   'offsetTop',
   'offsetLeft',
@@ -158,7 +158,31 @@ const HTML_ELEMENT_KEYS = [
   'nonce',
   'click',
   'focus',
-  'blur'
+  'blur',
+  'class',
+  'contextmenu',
+  'tabindex?',
+  'enterkeyhint',
+  'is',
+  'radiogroup',
+  'role',
+  'about',
+  'datatype',
+  'inlist',
+  'property',
+  'resource',
+  'typeof',
+  'vocab',
+  'autocorrect',
+  'autosave',
+  'color',
+  'itemprop',
+  'itemscope',
+  'itemtype',
+  'itemid',
+  'itemref',
+  'results',
+  'security'
 ];
 
 const ELEMENT_KEYS = [

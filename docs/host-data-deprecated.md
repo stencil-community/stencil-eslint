@@ -9,5 +9,5 @@ No config is needed
 ## Usage
 
 ```json
-{ "@stencil/host-data-deprecated": "error" }
+{ "@stencil-community/host-data-deprecated": "error" }
 ```

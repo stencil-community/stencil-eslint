@@ -48,7 +48,7 @@ const rule: Rule.RuleModule = {
     };
     return {
       ...stencil.rules,
-      'ClassProperty > Decorator[expression.callee.name=Event]': checkName,
+      'PropertyDefinition > Decorator[expression.callee.name=Event]': checkName,
     };
   }
 };

@@ -1,12 +1,17 @@
-import { Rule } from 'eslint';
-import { isPrivate, stencilComponentContext, stencilDecorators } from '../utils';
+import { Rule } from "eslint";
+import {
+  getDecoratorList,
+  isPrivate,
+  stencilComponentContext,
+  stencilDecorators,
+} from "../utils";
 
 const rule: Rule.RuleModule = {
   meta: {
     docs: {
-      description: 'This rule catches own class attributes marked as public.',
-      category: 'Possible Errors',
-      recommended: true
+      description: "This rule catches own class attributes marked as public.",
+      category: "Possible Errors",
+      recommended: true,
     },
     schema: [],
     type: 'problem',
@@ -19,13 +24,20 @@ const rule: Rule.RuleModule = {
     const parserServices = context.parserServices;
     return {
       ...stencil.rules,
-      'ClassProperty': (node: any) => {
+      PropertyDefinition: (node: any) => {
         if (!stencil.isComponent()) {
           return;
         }
+
         const originalNode = parserServices.esTreeNodeToTSNodeMap.get(node);
-        const stencilDecorator = originalNode.decorators && originalNode.decorators.some(
-            (dec: any) => stencilDecorators.includes(dec.expression.expression.escapedText));
+        const decorators = getDecoratorList(originalNode);
+
+        const stencilDecorator =
+          decorators &&
+          decorators.some((dec: any) =>
+            stencilDecorators.includes(dec.expression.expression.escapedText)
+          );
+
         if (!stencilDecorator && !isPrivate(originalNode)) {
           context.report({
             node: node,
@@ -35,9 +47,9 @@ const rule: Rule.RuleModule = {
             }
           });
         }
-      }
+      },
     };
-  }
+  },
 };
 
 export default rule;
