@@ -182,8 +182,7 @@ const HTML_ELEMENT_KEYS = [
   'itemid',
   'itemref',
   'results',
-  'security',
-  'unselectable'
+  'security'
 ];
 
 const ELEMENT_KEYS = [
