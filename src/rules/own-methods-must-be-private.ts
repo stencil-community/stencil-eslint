@@ -46,7 +46,15 @@ const rule: Rule.RuleModule = {
             node: node,
             message: `Own class methods cannot be public`,
             fix(fixer) {
-              return fixer.insertTextBefore(node.key, 'private ');
+              const sourceCode = context.getSourceCode();
+              const tokens = sourceCode.getTokens(node);
+              const publicToken = tokens.find(token => token.value === 'public');
+
+              if (publicToken) {
+                return fixer.replaceText(publicToken, 'private');
+              } else {
+                return fixer.insertTextBefore(node.key, 'private ');
+              }
             }
           });
         }

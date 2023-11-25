@@ -1,14 +1,14 @@
 @Component({ tag: 'sample-tag' })
 export class SampleTag {
-  internalProp: string;
+  private internalProp: string;
 
-  public internalProp2 = 1;
-
-  @OwnDecorator()
-  public internalDecoratedProp: string;
+  private internalProp2 = 1;
 
   @OwnDecorator()
-  internalDecoratedProp2: string;
+  private internalDecoratedProp: string;
+
+  @OwnDecorator()
+  private internalDecoratedProp2: string;
 
   @Prop() readonly test?: string;
 

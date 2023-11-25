@@ -6,7 +6,8 @@ import * as fs from 'fs';
 describe('stencil rules', () => {
   const files = {
     good: path.resolve(__dirname, 'own-methods-must-be-private.good.tsx'),
-    wrong: path.resolve(__dirname, 'own-methods-must-be-private.wrong.tsx')
+    wrong: path.resolve(__dirname, 'own-methods-must-be-private.wrong.tsx'),
+    output: path.resolve(__dirname, 'own-methods-must-be-private.output.tsx')
   };
   ruleTester.run('own-methods-must-be-private', rule, {
     valid: [
@@ -20,7 +21,8 @@ describe('stencil rules', () => {
       {
         code: fs.readFileSync(files.wrong, 'utf8'),
         filename: files.wrong,
-        errors: 4
+        errors: 4,
+        output: fs.readFileSync(files.output, 'utf8')
       }
     ]
   });
