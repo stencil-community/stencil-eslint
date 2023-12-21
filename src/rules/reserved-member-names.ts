@@ -9,6 +9,7 @@
 
 import { Rule } from 'eslint';
 import { stencilComponentContext } from '../utils';
+
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 
@@ -100,16 +101,30 @@ const JSX_KEYS = [
   'key'
 ];
 
-const { document } = (new JSDOM()).window;
-const htmlElement = document.createElement("tester-component"); // creates a custom element base (HTMLElement)
+function getHtmlElementProperties(): string[] {
+  const { window: win } = new JSDOM();
+  const { document: doc } = win;
+  const htmlElement = doc.createElement("tester-component"); // creates a custom element base (HTMLElement)
+  const relevantInterfaces = [win.HTMLElement, win.Element, win.Node, win.EventTarget];
+  const props = new Set<string>();
 
-const RESERVED_NON_HTML_ELEMENT_PUBLIC_MEMBERS = new Set([
+  let currentInstance = htmlElement;
+  while (currentInstance && relevantInterfaces.some(relevantInterface => currentInstance instanceof relevantInterface)) {
+    Object.getOwnPropertyNames(currentInstance).forEach((prop: string) => props.add(prop));
+    currentInstance = Object.getPrototypeOf(currentInstance);
+  }
+
+  return Array.from(props);
+}
+
+const RESERVED_PUBLIC_MEMBERS = new Set([
   ...GLOBAL_ATTRIBUTES,
+  ...getHtmlElementProperties(),
   ...JSX_KEYS
 ].map(p => p.toLowerCase()));
 
 function isReservedMember(memberName: string) {
-  return RESERVED_NON_HTML_ELEMENT_PUBLIC_MEMBERS.has(memberName.toLowerCase()) || htmlElement.hasAttribute(memberName) || memberName in htmlElement;
+  return RESERVED_PUBLIC_MEMBERS.has(memberName.toLowerCase());
 }
 
 export default rule;

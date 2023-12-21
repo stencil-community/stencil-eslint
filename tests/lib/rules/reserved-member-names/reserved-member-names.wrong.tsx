@@ -12,9 +12,12 @@ export class SampleTag {
   @Prop() id?: string;
 
   // HTMLElement prop
-  @Prop() title?: string;
+  @Prop() outerText?: string
 
-  // HTMLElement method (as prop)
+  // Global attribute attribute (as component prop)
+  @Prop() tabindex?: string;
+
+  // HTMLElement method (as component prop)
   @Prop() blur?: string;
 
   // EventTarget method
@@ -44,6 +47,12 @@ export class SampleTag {
   // Element prop (as component method)
   @Method()
   async innerHTML() {
+    return 'ouch';
+  }
+
+  // Global attribute (as component method)
+  @Method()
+  async contextmenu() {
     return 'ouch';
   }
 
