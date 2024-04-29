@@ -35,7 +35,7 @@ const rule: Rule.RuleModule = {
       }
       const originalNode = parserServices.esTreeNodeToTSNodeMap.get(node);
       const varName = originalNode.expression.arguments[0].text;
-      if (!varsList.has(varName)) {
+      if (!varsList.has(varName) && !isReservedAttribute(varName.toLowerCase())) {
         context.report({
           node: node,
           message: `Watch decorator @Watch("${varName}") is not matching with any @Prop() or @State()`,
@@ -58,5 +58,49 @@ const rule: Rule.RuleModule = {
     };
   }
 };
+
+// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes
+const GLOBAL_ATTRIBUTES = [
+  'about',
+  'accessKey',
+  'autocapitalize',
+  'autofocus',
+  'class',
+  'contenteditable',
+  'contextmenu',
+  'dir',
+  'draggable',
+  'enterkeyhint',
+  'hidden',
+  'id',
+  'inert',
+  'inputmode',
+  'id',
+  'itemid',
+  'itemprop',
+  'itemref',
+  'itemscope',
+  'itemtype',
+  'lang',
+  'nonce',
+  'part',
+  'popover',
+  'role',
+  'slot',
+  'spellcheck',
+  'style',
+  'tabindex',
+  'title',
+  'translate',
+  'virtualkeyboardpolicy',
+];
+
+const RESERVED_PUBLIC_ATTRIBUTES = new Set([
+  ...GLOBAL_ATTRIBUTES,
+].map(p => p.toLowerCase()));
+
+function isReservedAttribute(attributeName: string) {
+  return RESERVED_PUBLIC_ATTRIBUTES.has(attributeName.toLowerCase());
+}
 
 export default rule;

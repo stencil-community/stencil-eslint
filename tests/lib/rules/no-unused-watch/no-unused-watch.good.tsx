@@ -15,6 +15,11 @@ export class SampleTag {
     console.log('st watch');
   }
 
+  @Watch('class')
+  watchClass() {
+    console.log('class watch');
+  }
+
   render() {
     return (<div>test</div>);
   }
