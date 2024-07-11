@@ -13,8 +13,11 @@ export class SampleTag {
     if (!this.testNotMutable) {
       this.testMutable = 'other value';
     }
+    this.testMutableAfterAssignmentSite = true;
     return this.testMutableReturn = true;
   }
+
+  @Prop({ mutable: true }) testMutableAfterAssignmentSite?: boolean;
 
   private onClick(e: Event) {
     e.preventDefault();

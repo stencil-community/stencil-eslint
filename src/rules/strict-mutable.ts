@@ -2,6 +2,8 @@ import { Rule } from 'eslint';
 import { parseDecorator, stencilComponentContext } from '../utils';
 
 const mutableProps = new Map<string, any>();
+const mutableAssigned = new Set<string>();
+
 const rule: Rule.RuleModule = {
   meta: {
     docs: {
@@ -22,6 +24,7 @@ const rule: Rule.RuleModule = {
       }
       const parsed = parseDecorator(node);
       const mutable = parsed && parsed.length && parsed[0].mutable || false;
+
       if (mutable) {
         const varName = node.parent.key.name;
         mutableProps.set(varName, node);
@@ -33,7 +36,7 @@ const rule: Rule.RuleModule = {
         return;
       }
       const propName = node.left.property.name;
-      mutableProps.delete(propName);
+      mutableAssigned.add(propName);
     }
 
     stencil.rules["ClassDeclaration:exit"]
@@ -46,12 +49,15 @@ const rule: Rule.RuleModule = {
         stencil.rules["ClassDeclaration:exit"](node);
 
         if (isCmp) {
+          mutableAssigned.forEach((propName) => mutableProps.delete(propName));
           mutableProps.forEach((varNode, varName) => {
             context.report({
               node: varNode.parent,
               message: `@Prop() "${varName}" should not be mutable`,
             });
           });
+
+          mutableAssigned.clear();
           mutableProps.clear();
         }
       }
