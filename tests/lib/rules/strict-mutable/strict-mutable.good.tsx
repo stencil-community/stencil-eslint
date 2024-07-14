@@ -10,7 +10,7 @@ export class SampleTag {
 
   private internalMethod() {
     const test = 'hi';
-    if (!this.testNotMutable) {
+    if (!this.testNotMutable || !this.testNotMutableAfterReadSite) {
       this.testMutable = 'other value';
     }
     this.testMutableAfterAssignmentSite = true;
@@ -18,6 +18,7 @@ export class SampleTag {
   }
 
   @Prop({ mutable: true }) testMutableAfterAssignmentSite?: boolean;
+  @Prop({ mutable: false }) testNotMutableAfterAccessSite?: boolean;
 
   private onClick(e: Event) {
     e.preventDefault();
