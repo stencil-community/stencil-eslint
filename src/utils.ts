@@ -94,6 +94,10 @@ export const stencilLifecycle = [
   'componentShouldUpdate',
   'componentWillUpdate',
   'componentDidUpdate',
+  'formAssociatedCallback',
+  'formDisabledCallback',
+  'formResetCallback',
+  'formStateRestoreCallback',
   'render'
 ];
 
