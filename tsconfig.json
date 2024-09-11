@@ -6,12 +6,12 @@
     "declaration": false,
     "esModuleInterop": true,
     "experimentalDecorators": true,
-    "module": "esnext",
+    "module": "es2022",
     "moduleResolution": "node",
     "strict": true,
-    "target": "es2017",
+    "target": "es2022",
     "outDir": "dist/build",
-    "lib": ["es2017"]
+    "lib": ["es2022"]
   },
   "files": ["src/index.ts"],
 }

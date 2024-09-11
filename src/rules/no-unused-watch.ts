@@ -18,7 +18,7 @@ const rule: Rule.RuleModule = {
   create(context): Rule.RuleListener {
     const stencil = stencilComponentContext();
 
-    const parserServices = context.parserServices;
+    const parserServices = context.sourceCode.parserServices;
 
     function getVars(node: any) {
       if (!stencil.isComponent()) {

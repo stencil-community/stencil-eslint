@@ -71,7 +71,7 @@ const rule: Rule.RuleModule = {
   create(context): Rule.RuleListener {
     const stencil = stencilComponentContext();
 
-    const parserServices = context.parserServices;
+    const parserServices = context.sourceCode.parserServices;
     const opts = context.options[0] || {};
     const options = { ...DEFAULTS, ...opts };
 
