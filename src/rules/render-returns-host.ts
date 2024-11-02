@@ -28,7 +28,7 @@ const rule: Rule.RuleModule = {
     //----------------------------------------------------------------------
 
     const stencil = stencilComponentContext();
-    const parserServices = context.parserServices;
+    const parserServices = context.sourceCode.parserServices;
     const typeChecker = parserServices.program.getTypeChecker() as ts.TypeChecker;
 
     return {

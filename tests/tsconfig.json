@@ -12,9 +12,10 @@
       "dom",
       "scripthost",
       "es2017",
-      "es2019"
+      "es2019",
+      "es2022"
     ],
-    "module": "esnext",
+    "module": "es2022",
     "moduleResolution": "node",
     "noImplicitAny": true,
     "noUnusedLocals": true,
@@ -22,7 +23,7 @@
     "resolveJsonModule": true,
     "strict": true,
     "strictNullChecks": true,
-    "target": "es2017"
+    "target": "es2022"
   },
   "include": [
     "lib",

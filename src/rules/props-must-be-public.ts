@@ -16,7 +16,7 @@ const rule: Rule.RuleModule = {
   create(context): Rule.RuleListener {
     const stencil = stencilComponentContext();
 
-    const parserServices = context.parserServices;
+    const parserServices = context.sourceCode.parserServices;
     return {
       ...stencil.rules,
       'PropertyDefinition': (node: any) => {
