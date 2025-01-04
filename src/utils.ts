@@ -79,7 +79,7 @@ export function stencilComponentContext() {
 }
 
 export function getType(node: any) {
-  return node.typeAnnotation.typeAnnotation.typeName.name;
+  return node.typeAnnotation?.typeAnnotation?.typeName?.name;
 }
 
 export const stencilDecorators = ['Component', 'Prop', 'State', 'Watch', 'Element', 'Method', 'Event', 'Listen', 'AttachInternals'];
