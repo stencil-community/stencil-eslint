@@ -2,8 +2,14 @@
 export class SampleTag {
   @Prop() test?: string;
 
+  @Prop() 
+  get testGetter() {
+    return 'getter';
+  }
+
   @State() testState = 1;
 
+  @Watch('testGetter')
   @Watch('test')
   @Watch('testState')
   watchFn() {
