@@ -39,10 +39,19 @@ const rule: Rule.RuleModule = {
 
           if (tagType !== parsedTag) {
             context.report({
-              node: node.parent.typeAnnotation,
+              node: node.parent.typeAnnotation ?? node.parent,
               message: `@Element type is not matching tag for component (${parsedTag})`,
               fix(fixer) {
-                return fixer.replaceText(node.parent.typeAnnotation.typeAnnotation, parsedTag);
+                // If the property has a type annotation, we can replace just that node with the parsed tag
+                // @Element() elm: HTMLElement; -> @Element() elm: HTMLSampleTagElement;
+                if (node.parent.typeAnnotation?.typeAnnotation) {
+                  return fixer.replaceText(node.parent.typeAnnotation.typeAnnotation, parsedTag);
+                }
+
+                // If no type annotation exists on the property, we'll do some string manipulation to insert one.
+                // @Element() elm; -> @Element() elm: HTMLSampleTagElement;
+                const text = context.sourceCode.getText(node.parent).replace(';', '').concat(`: ${parsedTag};`)
+                return fixer.replaceText(node.parent, text);
               }
             });
           }

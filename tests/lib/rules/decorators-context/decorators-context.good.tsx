@@ -3,6 +3,11 @@ export class SampleTag {
 
   @Prop() test?: string;
 
+  @Prop() 
+  get testGetter() {
+    return 'getter';
+  }
+
   @Element() element!: HTMLElement;
 
   @Method()

@@ -5,5 +5,6 @@ import strict from './strict';
 export default {
   base,
   recommended,
-  strict
+  strict,
+  flat: {},
 };
