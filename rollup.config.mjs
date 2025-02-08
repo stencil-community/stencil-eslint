@@ -14,7 +14,8 @@ export default {
     'eslint',
     'typescript',
     'tsutils',
-    'eslint-utils'
+    'eslint-utils',
+    'eslint-plugin-react'
   ],
   output: {
     file: 'dist/index.js',
